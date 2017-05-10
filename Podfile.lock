@@ -1,0 +1,27 @@
+PODS:
+  - Alamofire (4.4.0)
+  - BaiduMapKit (3.2.1)
+  - CryptoSwift (0.6.7)
+  - Font-Awesome-Swift (1.6.1)
+  - JSONWebToken (2.0.2):
+    - CryptoSwift (~> 0.6.1)
+  - SwiftyJSON (3.1.4)
+
+DEPENDENCIES:
+  - Alamofire (~> 4.4)
+  - BaiduMapKit
+  - Font-Awesome-Swift (~> 1.6.1)
+  - JSONWebToken
+  - SwiftyJSON
+
+SPEC CHECKSUMS:
+  Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
+  BaiduMapKit: 9c748785aa3dddfc41dcb70c14b21ce32f680930
+  CryptoSwift: 685ae257941e5447474348a2b545583e1a16b573
+  Font-Awesome-Swift: 70ab020f6749d7048bb49807c3e78b702d78afca
+  JSONWebToken: ca86f02eeb3d1f58ba5197ec2cd53c7de915ecc1
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
+
+PODFILE CHECKSUM: 9ef5367b493948dd13266d29fb43f4b1d99b52dc
+
+COCOAPODS: 1.2.0
