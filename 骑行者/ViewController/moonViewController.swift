@@ -149,9 +149,7 @@ class moonViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         return 1
     }
     
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 250
-//    }
+
     //返回表格行数（也就是返回控件数）
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -170,7 +168,10 @@ class moonViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         cell.time.text = data![indexPath.row]["update_time"].string!
         cell.detailtext.text = data?[indexPath.row]["detail"].string!
         let vtc = (data?[indexPath.row]["votecount"].int)!
+        let cmt = (data?[indexPath.row]["comcount"].int)!
+        cell.comcount.text = "\(cmt)"
         cell.votecount.text = "\(vtc)"
+        cell.selectedBackgroundView?.backgroundColor = .white
         cell.votebutton.tag = indexPath.row
         cell.frame = tableView.bounds
         print("bounds \(tableView.bounds)")
@@ -192,12 +193,11 @@ class moonViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     // 点击单元格
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("点击了\(indexPath.row)")
-//        
-//        let sb = UIStoryboard(name: "Main", bundle: nil)
-//        let vc = sb.instantiateViewController(withIdentifier: "newsdetail") as! newsdetailViewController
-//        vc.hidesBottomBarWhenPushed = true
-//        self.navigationController?.pushViewController(vc, animated:true)
-        
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        let vc = sb.instantiateViewController(withIdentifier:"moondetail") as! MoonDetailViewController
+        vc.hidesBottomBarWhenPushed = true
+        vc.data = (self.data?[indexPath.row])!
+        self.navigationController?.pushViewController(vc, animated:true)
         
     }
     override func didReceiveMemoryWarning() {

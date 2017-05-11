@@ -21,6 +21,7 @@ class MoonTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollection
     @IBOutlet weak var votebutton: UIButton!
     @IBOutlet weak var comment: UIButton!
     @IBOutlet weak var votecount: UILabel!
+    @IBOutlet weak var comcount: UILabel!
     
     var navi : UINavigationController!
     

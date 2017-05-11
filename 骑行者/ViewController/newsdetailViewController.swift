@@ -17,7 +17,8 @@ class newsdetailViewController: UIViewController {
     
     var data :JSON? = []
     
-
+    var iscollect = false
+    var bkimage: UIImageView?
 
 
     @IBOutlet weak var votebutton: UIButton!
@@ -28,8 +29,10 @@ class newsdetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.bkimage?.getbyid(id: data!["pictures_id"].int!)
         self.votebutton.setImage(UIImage(icon: .FAThumbsOUp, size:CGSize(width:25,height:25) ,textColor:.gray ), for: .normal)
         self.fxbutton.setImage(UIImage(icon: .FAShareSquareO, size:CGSize(width:25,height:25) ,textColor:.gray ), for: .normal)
+        
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(notification:)), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
         
@@ -37,11 +40,61 @@ class newsdetailViewController: UIViewController {
         if UserDefaults.standard.string(forKey: "user_role") == "manager"{
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(image:UIImage(icon: .FATrashO, size: CGSize(width:25,height:25)),style: .plain, target: self, action:#selector(self.deldetenews))
         }else {
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image:UIImage(icon: .FAHeartO, size: CGSize(width:25,height:25)),style: .plain, target: self, action: nil)
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(image:UIImage(named:"heartOL"),style: .plain, target: self, action: #selector(collectnews))
+            didcollect(){
+                bool in
+                if bool {
+                    self.navigationItem.rightBarButtonItem?.tintColor = .red
+                    self.iscollect = true
+                }else {
+                    self.navigationItem.rightBarButtonItem?.tintColor = .gray
+                }
+            }
         }
-        
-        }
+    }
     
+    
+    func didcollect(next: @escaping (Bool)->()){
+        if readtoken(){
+            let url = "information/information/iscollect"
+            let arr = ["information_id":(self.data?["id"].int)!,"user_id":(UserDefaults.standard.string(forKey: "user_id"))!] as [String : Any]
+            print(arr)
+            Apost(url: url, body: arr){ data in
+                 next(data.bool!)
+            }
+        }else {
+            next (false)
+        }
+    }
+    
+    //收藏
+    func collectnews(){
+        if readtoken(){
+            let url = "information/information/collect"
+            var arr = ["information_id":(self.data?["id"].int)!,"user_id":(UserDefaults.standard.string(forKey: "user_id"))!] as [String : Any]
+            print(arr)
+            Apost(url: url, body: arr){ data in
+                print("收藏：\(data)")
+                if data.bool! == true {
+                    if self.iscollect == false{
+                        self.navigationItem.rightBarButtonItem?.tintColor = .red
+                        self.iscollect = true
+                    }else{
+                        self.navigationItem.rightBarButtonItem?.tintColor = .gray
+                        self.iscollect = false
+                    }
+                }else{
+                    print("收藏出错")
+                }
+            }
+        } else {
+            let sb = UIStoryboard(name: "Main", bundle: nil)
+            let vc = sb.instantiateViewController(withIdentifier: "loadview") as! LoadViewController
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc, animated:true)
+        }
+    }
+    //分享
     @IBAction func share(_ sender: AnyObject) {
         
         let alert = UIAlertController.init(title:  "分享到：", message: nil, preferredStyle: .actionSheet)
@@ -66,10 +119,10 @@ class newsdetailViewController: UIViewController {
     func  sharenews(type:SSDKPlatformType){
         // 1.创建分享参数
         let shareParames = NSMutableDictionary()
-        shareParames.ssdkSetupShareParams(byText: "分享内容分享内容分享内容分享内容分享内容分享内容分",
-                                          images : UIImage(named: "good"),
-                                          url : NSURL(string:"http://baidu.com") as URL!,
-                                          title : "分享标题",
+        shareParames.ssdkSetupShareParams(byText: data?["detail"].string,
+                                          images : bkimage?.image,
+                                          url : nil,
+                                          title : data?["name"].string,
                                           type : SSDKContentType.image)
         
         //2.进行分享

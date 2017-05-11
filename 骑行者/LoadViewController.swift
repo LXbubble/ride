@@ -105,6 +105,7 @@ class LoadViewController: UIViewController,UITextFieldDelegate,TencentSessionDel
         }
         return false
     }
+    
     // 创建提醒
     func creatAlart(message:String){
         let alartController = UIAlertController(title: nil, message: message, preferredStyle: .alert)
@@ -151,27 +152,32 @@ class LoadViewController: UIViewController,UITextFieldDelegate,TencentSessionDel
     func getUserInfoResponse(_ response: APIResponse!) {
         
         let data = response.jsonResponse
-        
+        print("qqdata:\(data)")
         let name :String = _tencentOAuth.openId
-        
         let nickname:String = data?["nickname"] as! String
         let gender:String = data?["gender"] as!String
         let city : String = data?["city"] as! String
-        
-        let body = ["name":name,"nickname":nickname,"city":city,"gender":gender]
-        
-        let url:String = "user/load/qqload"
-        
-        Apost(url: url, body: body) { (data) in
-            if let token = data["token"].string {
-                print("qq信息录入成功")
-                UserDefaults.standard.set(token, forKey:"token")
-                decodetoken()
-                //登录成功，界面跳转
-                self.change()
-                
-            }else {
-                print("false")
+        var body = ["name":name,"nickname":nickname,"city":city,"gender":gender]
+        let figureurl = data?["figureurl"] as! String
+        Alamofire.request(figureurl).response{
+            response in
+            let data = response.data
+            photopost(data: data!){
+                data in
+                body["pictures_id"] = (data["id"].string)!
+                let url:String = "user/load/qqload"
+                Apost(url: url, body: body) { (data) in
+                    if let token = data["token"].string {
+                        print("qq信息录入成功")
+                        UserDefaults.standard.set(token, forKey:"token")
+                        decodetoken()
+                        //登录成功，界面跳转
+                        self.change()
+                        
+                    }else {
+                        print("false")
+                    }
+                }
             }
         }
     }
@@ -197,7 +203,7 @@ class LoadViewController: UIViewController,UITextFieldDelegate,TencentSessionDel
         }
         else{
             loadbtn.isUserInteractionEnabled = false
-            loadbtn.backgroundColor = UIColor.white
+            loadbtn.backgroundColor = UIColor.gray
             
         }
         

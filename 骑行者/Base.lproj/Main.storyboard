@@ -108,7 +108,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="plus" translatesAutoresizingMaskIntoConstraints="NO" id="PHc-sI-aGi">
-                                <frame key="frameInset" minX="15" minY="223" width="32.79%" height="28.70%"/>
+                                <frame key="frameInset" minX="15" minY="223" width="33.77%" height="28.70%"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
@@ -157,7 +157,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ps9-i4-nBw">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ps9-i4-nBw">
+                                <frame key="frameInset" minY="-29" width="320" height="568"/>
                                 <state key="normal">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -270,6 +271,8 @@
                             <constraint firstItem="NIN-6q-2gG" firstAttribute="centerX" secondItem="IvD-JG-hOk" secondAttribute="centerX" id="F4P-I5-U2t"/>
                             <constraint firstItem="IvD-JG-hOk" firstAttribute="centerY" secondItem="bWR-tc-QRk" secondAttribute="centerY" id="JgI-g0-X3P"/>
                             <constraint firstItem="U7x-1y-4ou" firstAttribute="width" secondItem="K2n-ze-k5a" secondAttribute="width" id="JnB-Qo-46X"/>
+                            <constraint firstItem="ps9-i4-nBw" firstAttribute="leading" secondItem="K2n-ze-k5a" secondAttribute="leading" id="Kvv-Hb-p5H"/>
+                            <constraint firstAttribute="trailing" secondItem="ps9-i4-nBw" secondAttribute="trailing" id="KxR-3m-hg1"/>
                             <constraint firstItem="Qhq-Ka-Sqg" firstAttribute="top" secondItem="ps9-i4-nBw" secondAttribute="bottom" constant="29" id="LrG-Lz-85q"/>
                             <constraint firstItem="U7x-1y-4ou" firstAttribute="top" secondItem="K2n-ze-k5a" secondAttribute="top" constant="197" id="Lyr-Lx-1a6"/>
                             <constraint firstItem="O7v-mB-rOt" firstAttribute="trailing" secondItem="sd8-E0-7rb" secondAttribute="trailing" id="Nim-vA-cGr"/>
@@ -277,8 +280,10 @@
                             <constraint firstAttribute="bottom" secondItem="O7v-mB-rOt" secondAttribute="bottom" constant="137" id="U1E-uY-Dje"/>
                             <constraint firstItem="U7x-1y-4ou" firstAttribute="centerX" secondItem="zKh-CT-Qng" secondAttribute="centerX" id="X4A-3z-yfN"/>
                             <constraint firstItem="O7v-mB-rOt" firstAttribute="leading" secondItem="sd8-E0-7rb" secondAttribute="leading" id="czD-6W-Ie6"/>
+                            <constraint firstItem="ps9-i4-nBw" firstAttribute="top" secondItem="K2n-ze-k5a" secondAttribute="top" id="fHW-yA-inJ"/>
                             <constraint firstItem="O7v-mB-rOt" firstAttribute="leading" secondItem="K2n-ze-k5a" secondAttribute="leadingMargin" id="g7G-E4-LNx"/>
                             <constraint firstItem="U7x-1y-4ou" firstAttribute="centerX" secondItem="sd8-E0-7rb" secondAttribute="centerX" id="qBW-Ho-fJp"/>
+                            <constraint firstItem="Qhq-Ka-Sqg" firstAttribute="top" secondItem="ps9-i4-nBw" secondAttribute="bottom" id="sgA-gO-84M"/>
                             <constraint firstItem="IvD-JG-hOk" firstAttribute="firstBaseline" secondItem="bWR-tc-QRk" secondAttribute="baseline" id="tZN-YM-fx0"/>
                             <constraint firstItem="O7v-mB-rOt" firstAttribute="top" secondItem="IvD-JG-hOk" secondAttribute="bottom" constant="30" id="uNX-Hx-IST"/>
                             <constraint firstItem="Qhq-Ka-Sqg" firstAttribute="top" secondItem="l2C-I0-09t" secondAttribute="bottom" constant="51.5" id="x97-4C-O5L"/>
@@ -298,7 +303,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="frY-gY-fCa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-8385" y="-709"/>
+            <point key="canvasLocation" x="-8385" y="-709.85915492957747"/>
         </scene>
         <!--手机号注册-->
         <scene sceneID="foM-pD-koh">
@@ -314,7 +319,7 @@
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L3p-sy-bZf"/>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" 请输入手机号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="h0g-LU-6hU">
-                                <frame key="frameInset" minX="-4" minY="106" height="40" maxX="3"/>
+                                <frame key="frameInset" minX="-4" minY="106" height="40" maxX="4"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="textColor"/>
@@ -322,7 +327,7 @@
                                 <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" 请输入验证码" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Hs2-b3-haa">
-                                <frame key="frameInset" minX="-4" minY="147" height="40" maxX="3"/>
+                                <frame key="frameInset" minX="-4" minY="147" height="40" maxX="4"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="textColor"/>
@@ -338,7 +343,7 @@
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" 请输入昵称" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="eiV-aT-wSO">
-                                <frame key="frameInset" minX="-4" minY="229" height="40" maxX="3"/>
+                                <frame key="frameInset" minX="-4" minY="229" height="40" maxX="4"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="textColor"/>
@@ -359,7 +364,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Psa-jR-ye2">
-                                <frame key="frameInset" minY="109" width="26.84%" height="30" maxX="7"/>
+                                <frame key="frameInset" minY="109" width="26.28%" height="30" maxX="8"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <state key="normal" title="获取验证码"/>
@@ -403,7 +408,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VfE-qI-cSL">
-                                <frame key="frameInset" minX="-4" minY="20" height="44" maxX="4"/>
+                                <frame key="frameInset" minX="-5" minY="20" height="44" maxX="4"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Title" id="WXw-FS-ZAc"/>
@@ -442,7 +447,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" layoutMarginsFollowReadableWidth="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eEc-fc-eHy">
-                                <frame key="frameInset" minX="13" minY="356" height="34" maxX="22"/>
+                                <frame key="frameInset" minX="12" minY="356" height="34" maxX="23"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.070806620050000005" green="0.44796149909999999" blue="0.98406822640000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="注册">
@@ -474,73 +479,12 @@
             </objects>
             <point key="canvasLocation" x="-7337" y="-663"/>
         </scene>
-        <!--Newsdetail View Controller-->
-        <scene sceneID="OdG-L1-ryM">
-            <objects>
-                <viewController storyboardIdentifier="newsdetail" id="dee-vK-a7x" customClass="newsdetailViewController" customModule="骑行者" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="YlT-Ug-fv9"/>
-                        <viewControllerLayoutGuide type="bottom" id="Dt8-Ab-DZv"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="tDs-hc-Aid">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bQP-ER-jGs">
-                                <frame key="frameInset" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <items>
-                                    <barButtonItem style="plain" id="9WT-Vy-zvd">
-                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="aze-YP-kYh">
-                                            <rect key="frame" x="16" y="10" width="25" height="25"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <state key="normal" image="good"/>
-                                            <connections>
-                                                <action selector="vote:" destination="dee-vK-a7x" eventType="touchUpInside" id="coJ-HI-56f"/>
-                                            </connections>
-                                        </button>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" id="2C5-Ae-ANi">
-                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="lh6-Bo-pcM">
-                                            <rect key="frame" x="51" y="10" width="25" height="25"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" image="account"/>
-                                            <connections>
-                                                <action selector="share:" destination="dee-vK-a7x" eventType="touchUpInside" id="UT0-TU-doL"/>
-                                            </connections>
-                                        </button>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" id="PQR-VG-q4W">
-                                        <textField key="customView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="1yX-ij-e95">
-                                            <rect key="frame" x="86" y="7" width="225" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES"/>
-                                            <nil key="textColor"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                        </textField>
-                                    </barButtonItem>
-                                </items>
-                            </toolbar>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="n67-9u-Ko2"/>
-                    <connections>
-                        <outlet property="commenttext" destination="1yX-ij-e95" id="sXv-ym-5jF"/>
-                        <outlet property="fxbutton" destination="lh6-Bo-pcM" id="NVY-Ra-hAh"/>
-                        <outlet property="votebutton" destination="aze-YP-kYh" id="IAl-AR-zP8"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="NfL-eN-71b" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-4881" y="-1240"/>
-        </scene>
         <!--Denglu Controller-->
         <scene sceneID="aFv-kx-JKF">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7hM-lR-N1c" customClass="dengluController" customModule="骑行者" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="HGg-ra-yhH">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="HGg-ra-yhH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -599,7 +543,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="uin-af-9yu" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="KFM-ln-Auq"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xk5-0j-NIW">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="xk5-0j-NIW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -612,15 +556,137 @@
             </objects>
             <point key="canvasLocation" x="-7800" y="-2129"/>
         </scene>
+        <!--Newsdetail View Controller-->
+        <scene sceneID="Z3V-vs-Hwr">
+            <objects>
+                <viewController storyboardIdentifier="newsdetail" id="nx2-OZ-jdO" customClass="newsdetailViewController" customModule="骑行者" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="C6C-Y3-JZI"/>
+                        <viewControllerLayoutGuide type="bottom" id="Je0-dh-13J"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Anz-MB-YNr">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SOc-Zw-bqz">
+                                <frame key="frameInset" minX="1" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem style="plain" id="E54-8z-b3k">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="3YF-L1-1OU">
+                                            <rect key="frame" x="16" y="10" width="25" height="25"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <state key="normal" image="good"/>
+                                            <connections>
+                                                <action selector="vote:" destination="nx2-OZ-jdO" eventType="touchUpInside" id="1cb-NA-LeT"/>
+                                            </connections>
+                                        </button>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" id="du0-e6-7hf">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="GAo-IS-5dH">
+                                            <rect key="frame" x="51" y="10" width="25" height="25"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" image="account"/>
+                                            <connections>
+                                                <action selector="share:" destination="nx2-OZ-jdO" eventType="touchUpInside" id="BtE-oT-XXb"/>
+                                            </connections>
+                                        </button>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" id="XdX-Xf-eBx">
+                                        <textField key="customView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="uhu-3D-wO7">
+                                            <rect key="frame" x="86" y="7" width="226" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES"/>
+                                            <nil key="textColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="q45-Cv-j2O"/>
+                    <connections>
+                        <outlet property="commenttext" destination="uhu-3D-wO7" id="wTX-C5-Ilz"/>
+                        <outlet property="fxbutton" destination="GAo-IS-5dH" id="CDb-d3-4Lb"/>
+                        <outlet property="votebutton" destination="3YF-L1-1OU" id="5q1-e6-H4F"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Q2M-s4-xJl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-5371.875" y="-1270.7746478873239"/>
+        </scene>
+        <!--Moon Detail View Controller-->
+        <scene sceneID="bF0-mx-pkv">
+            <objects>
+                <viewController storyboardIdentifier="moondetail" id="z0a-FS-gd5" customClass="MoonDetailViewController" customModule="骑行者" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="AVD-aB-sZX"/>
+                        <viewControllerLayoutGuide type="bottom" id="god-DO-SUd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="AgR-WT-KCb">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Oeo-kn-Q0S">
+                                <frame key="frameInset" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem style="plain" id="728-7V-PtK">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="LV8-5y-mlH">
+                                            <rect key="frame" x="16" y="10" width="25" height="25"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" image="good"/>
+                                            <connections>
+                                                <action selector="vote:" destination="z0a-FS-gd5" eventType="touchUpInside" id="yoF-fM-hgG"/>
+                                            </connections>
+                                        </button>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" id="92d-GL-DQ3">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Qd6-r7-Ecb">
+                                            <rect key="frame" x="51" y="10" width="25" height="25"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" image="comment"/>
+                                            <connections>
+                                                <action selector="share:" destination="z0a-FS-gd5" eventType="touchUpInside" id="TDK-ep-bF3"/>
+                                            </connections>
+                                        </button>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" id="j5k-IS-GcE">
+                                        <textField key="customView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="67v-dW-iAh">
+                                            <rect key="frame" x="86" y="7" width="225" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <nil key="textColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" returnKeyType="send"/>
+                                        </textField>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="commenttext" destination="67v-dW-iAh" id="AIb-gj-loj"/>
+                        <outlet property="fxbutton" destination="Qd6-r7-Ecb" id="2BS-zE-D5U"/>
+                        <outlet property="votebutton" destination="LV8-5y-mlH" id="fE9-Z3-RR9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="faj-df-X9O" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4582.5" y="-1270.7746478873239"/>
+        </scene>
     </scenes>
     <resources>
         <image name="account" width="200" height="200"/>
+        <image name="comment" width="200" height="200"/>
         <image name="good" width="100" height="100"/>
         <image name="plus" width="256" height="256"/>
         <image name="qqlogo" width="225" height="225"/>
         <image name="骑行" width="93" height="93"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="tNo-s9-deq"/>
+        <segue reference="4Qo-x3-nLT"/>
     </inferredMetricsTieBreakers>
 </document>

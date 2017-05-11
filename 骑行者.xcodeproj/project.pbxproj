@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18005BF41EC415E200979B8C /* comTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18005BF21EC415E200979B8C /* comTableViewCell.swift */; };
+		18005BF51EC415E200979B8C /* comTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18005BF31EC415E200979B8C /* comTableViewCell.xib */; };
 		181BE09E1E93AFCF00CD1CD5 /* SliderGalleryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181BE09C1E93AFCF00CD1CD5 /* SliderGalleryController.swift */; };
 		1821FC3D1EBD62300088825D /* AlbumToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1821FC2A1EBD62300088825D /* AlbumToolbarView.swift */; };
 		1821FC3E1EBD62300088825D /* ImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1821FC2B1EBD62300088825D /* ImageModel.swift */; };
@@ -93,6 +95,7 @@
 		18C7A7AB1EC1EF0B00C702D0 /* ImagePreviewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7A7A91EC1EF0B00C702D0 /* ImagePreviewVC.swift */; };
 		18C7A7AC1EC1EF0B00C702D0 /* ImagePreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7A7AA1EC1EF0B00C702D0 /* ImagePreviewCell.swift */; };
 		18C8112D1EBC43C60083ABCE /* CreatNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C8112C1EBC43C60083ABCE /* CreatNewsViewController.swift */; };
+		18C8486C1EC31522003AC40D /* MoonDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C8486B1EC31522003AC40D /* MoonDetailViewController.swift */; };
 		18C881781E8F37E400B7521D /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C881771E8F37E400B7521D /* libicucore.tbd */; };
 		18C8817A1E8F380900B7521D /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C881791E8F380900B7521D /* JavaScriptCore.framework */; };
 		18C8817C1E8F381600B7521D /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C8817B1E8F381600B7521D /* ImageIO.framework */; };
@@ -130,6 +133,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		18005BF21EC415E200979B8C /* comTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = comTableViewCell.swift; sourceTree = "<group>"; };
+		18005BF31EC415E200979B8C /* comTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = comTableViewCell.xib; sourceTree = "<group>"; };
 		181BE09C1E93AFCF00CD1CD5 /* SliderGalleryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SliderGalleryController.swift; path = ../SliderGalleryController.swift; sourceTree = "<group>"; };
 		1821FC2A1EBD62300088825D /* AlbumToolbarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumToolbarView.swift; sourceTree = "<group>"; };
 		1821FC2B1EBD62300088825D /* ImageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageModel.swift; sourceTree = "<group>"; };
@@ -230,6 +235,7 @@
 		18C7A7A91EC1EF0B00C702D0 /* ImagePreviewVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePreviewVC.swift; sourceTree = "<group>"; };
 		18C7A7AA1EC1EF0B00C702D0 /* ImagePreviewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePreviewCell.swift; sourceTree = "<group>"; };
 		18C8112C1EBC43C60083ABCE /* CreatNewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatNewsViewController.swift; sourceTree = "<group>"; };
+		18C8486B1EC31522003AC40D /* MoonDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoonDetailViewController.swift; sourceTree = "<group>"; };
 		18C881771E8F37E400B7521D /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
 		18C881791E8F380900B7521D /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		18C8817B1E8F381600B7521D /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
@@ -560,6 +566,7 @@
 				1821FC5A1EBE08130088825D /* newsViewController.swift */,
 				18EB83301EC016F80043161B /* newsdetailViewController.swift */,
 				18C7A7A71EC1A3EA00C702D0 /* moonViewController.swift */,
+				18C8486B1EC31522003AC40D /* MoonDetailViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -585,6 +592,8 @@
 				1821FC571EBD9B660088825D /* newsTableViewCell.xib */,
 				18C7A7A31EC194E200C702D0 /* MyCollectionViewCell.swift */,
 				18C7A7A41EC194E200C702D0 /* MyCollectionViewCell.xib */,
+				18005BF21EC415E200979B8C /* comTableViewCell.swift */,
+				18005BF31EC415E200979B8C /* comTableViewCell.xib */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -721,6 +730,7 @@
 				189B8FD71E90FFF5006071F9 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				189B8FDE1E915D00006071F9 /* FontAwesome.otf in Resources */,
 				18C881901E8F4EA000B7521D /* SMSSDKUI.bundle in Resources */,
+				18005BF51EC415E200979B8C /* comTableViewCell.xib in Resources */,
 				18A862EE1E86A15900D5C757 /* LaunchScreen.storyboard in Resources */,
 				189B8FD21E90FFF5006071F9 /* ShareSDKUI.bundle in Resources */,
 				1821FC591EBD9B660088825D /* newsTableViewCell.xib in Resources */,
@@ -810,7 +820,9 @@
 				1821FC4D1EBD62300088825D /* PhotoPreviewViewController.swift in Sources */,
 				1821FC3D1EBD62300088825D /* AlbumToolbarView.swift in Sources */,
 				1821FC401EBD62300088825D /* PhotoAlbumTableViewCell.swift in Sources */,
+				18005BF41EC415E200979B8C /* comTableViewCell.swift in Sources */,
 				186705641EB831F00004F457 /* SwiftPopMenu.swift in Sources */,
+				18C8486C1EC31522003AC40D /* MoonDetailViewController.swift in Sources */,
 				1821FC4E1EBD62300088825D /* UICollectionView+Extension.swift in Sources */,
 				1821FC421EBD62300088825D /* photoCollectionViewCell.swift in Sources */,
 				185B14A51E8CC94600C4DDB1 /* LoadViewController.swift in Sources */,

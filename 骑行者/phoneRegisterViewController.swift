@@ -54,9 +54,10 @@ class phoneRegisterViewController: UIViewController,UITextFieldDelegate{
     //获取验证码
     @IBAction func getNumber(_ sender: AnyObject) {
         let pn = phoneNumber.text!
-        
+        print("获取验证码！！！")
         SMSSDK.getVerificationCode(by: SMSGetCodeMethodSMS, phoneNumber: pn, zone: "86", customIdentifier: nil){
             (error: Error?) -> Void in
+            print("获取验证码222！")
             if(error == nil){
                 let message = "获取成功"
                 self.creatAlart(message: message)

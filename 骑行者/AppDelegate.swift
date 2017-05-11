@@ -73,8 +73,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,BMKGeneralDelegate{
             {
             case SSDKPlatformType.typeSinaWeibo:
                 //设置新浪微博应用信息,其中authType设置为使用SSO＋Web形式授权
-                appInfo?.ssdkSetupSinaWeibo(byAppKey: "568898243",
-                                            appSecret : "38a4f8204cc784f81f9f0daaf31e02e3",
+                appInfo?.ssdkSetupSinaWeibo(byAppKey: "1814308451",
+                                            appSecret : "ae765dbacb5ebcda7e505a7f886d3b83",
                                             redirectUri : "http://www.sharesdk.cn",
                                             authType : SSDKAuthTypeBoth)
                 

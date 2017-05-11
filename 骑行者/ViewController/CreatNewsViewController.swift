@@ -33,6 +33,8 @@ class CreatNewsViewController: UIViewController, UITextViewDelegate,UIImagePicke
         let tapGR = UITapGestureRecognizer(target: self, action:#selector(self.addimage))
         newsimage.addGestureRecognizer(tapGR)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "完成", style: .plain, target: self, action: #selector(self.creatnews))
+        
+        
         // Do any additional setup after loading the view.
     }
     

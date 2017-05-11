@@ -165,7 +165,7 @@ class newsViewController: UIViewController,UITableViewDelegate, UITableViewDataS
         cell.commentcount.text = "\(cc!)"
         cell.backimage.getbyid(id: (arry?["pictures_id"].int)!)
         cell.userpic.getbyid(id: (arry?["pid"].int)!)
-        
+        cell.selectedBackgroundView?.backgroundColor = .white
         
         //当拉到底部加载新数据
         if (loadMoreEnable && indexPath.row == (data?.array?.count)!-1){
@@ -185,6 +185,7 @@ class newsViewController: UIViewController,UITableViewDelegate, UITableViewDataS
         let vc:newsdetailViewController = sb.instantiateViewController(withIdentifier: "newsdetail") as! newsdetailViewController
         vc.hidesBottomBarWhenPushed = true
         vc.data = self.data?[indexPath.row]
+        
         self.navigationController?.pushViewController(vc, animated:true)
         
         

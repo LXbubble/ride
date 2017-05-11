@@ -50,6 +50,7 @@ public func checkpattern(str:String,pattern:String)->Bool{
 public func readtoken()->Bool{
     let token = UserDefaults.standard.string(forKey: "token")
     if token == nil{
+        
         return false
     }
     else {
