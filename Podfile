@@ -7,5 +7,9 @@ target ‘骑行者’ do
     pod 'JSONWebToken'
     pod 'SwiftyJSON'
     pod 'Font-Awesome-Swift', '~> 1.6.1'
-    pod 'BaiduMapKit' #百度地图SDK
+    pod 'AMap3DMap' 
+    pod 'AMapSearch' 
+    pod 'AMapLocation'
+    pod 'AMapNavi'
+
 end

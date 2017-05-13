@@ -41,8 +41,7 @@ func Aget (url:String,next: @escaping (JSON)->())
 func urladd(url:String)->String{
     //let urltitle:String = "http://localhost:8888/"
     
-    let urltitle:String = "http://169.254.64.229:8888/"
-    
+    let urltitle:String = "http://60.176.44.121:8888/"
     let URL = urltitle + url
     return URL
 }

@@ -9,7 +9,7 @@
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate,BMKGeneralDelegate{
+class AppDelegate: UIResponder, UIApplicationDelegate{
     
     
     //重写openURL
@@ -21,20 +21,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate,BMKGeneralDelegate{
 
     
     var window: UIWindow?
-    var _mapManager: BMKMapManager?
+   
 
     //shareSDK 设置
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
       
-        
-        _mapManager = BMKMapManager()
-        // 如果要关注网络及授权验证事件，请设定generalDelegate参数
-        let ret = _mapManager?.start("6TAggWs1uc2sLFLkwX0IcUYm", generalDelegate: self)
-        if ret == false {
-            NSLog("manager start failed!")
-        }
-        
-        //   AMapServices.shared().apiKey = "a598628551f523cbc19fc1939e2f8e23"
+            AMapServices.shared().apiKey = "a598628551f523cbc19fc1939e2f8e23"
+            AMapServices.shared().enableHTTPS = true
+      
         
         //第一次启动判断
         //增加标识，用于判断是否是第一次启动应用...

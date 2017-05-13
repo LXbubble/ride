@@ -1,43 +1,52 @@
 //
-//  MapViewController.swift
+//  adressMapViewController.swift
 //  骑行者
 //
-//  Created by apple on 17/4/3.
+//  Created by apple on 17/5/13.
 //  Copyright © 2017年 李响. All rights reserved.
 //
 
 import UIKit
 
-class MapViewController: UIViewController,MAMapViewDelegate,AMapSearchDelegate,AMapLocationManagerDelegate{
-    
+class adressMapViewController: UIViewController,MAMapViewDelegate,AMapSearchDelegate,AMapLocationManagerDelegate {
+
     var mapView: MAMapView!
+    
     var search: AMapSearchAPI!
+    
     var annotation = MAPointAnnotation()
+    
     var locationManager = AMapLocationManager()
+    
+    var vcdelegate:CreatactivityViewController?
+    
+    var adresstext = UITextField(frame: CGRect(x: 0, y:60, width:UIScreen.main.bounds.width, height: 30))
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        //self.title = "Swift Demo"
-       //设置定位
+       
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title:"完成",style:.plain, target:self, action: #selector(self.setadress))
+        adresstext.borderStyle = .roundedRect
+        self.view.addSubview(adresstext)
+        self.view.bringSubview(toFront: adresstext)
+        adresstext.isHidden = true
+        
+        reloaction()
+        //设置定位
         locationManager.delegate = self
         self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         
         locationManager.locationTimeout = 2
         
         locationManager.reGeocodeTimeout = 2
-        
-        
-        
+
         AMapServices.shared().apiKey = "a598628551f523cbc19fc1939e2f8e23"
         
         initMapView()
         initSearch()
     }
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        self.tabBarItem.setFAIcon(icon: .FABicycle)
-        self.tabBarItem.title = "骑行"
-    }
+    
+
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -45,28 +54,33 @@ class MapViewController: UIViewController,MAMapViewDelegate,AMapSearchDelegate,A
         
         mapView.zoomLevel = 14
         mapView.showsScale = true
-        mapView.showsUserLocation = true
-        mapView.userTrackingMode = MAUserTrackingMode.follow
+//        mapView.showsUserLocation = true
+//        mapView.userTrackingMode = MAUserTrackingMode.follow
     }
     
+    func setadress(){
+        vcdelegate?.adress.text = self.adresstext.text
+        vcdelegate?.image = self.mapView.takeSnapshot(in:CGRect(x: 0, y: 100, width:UIScreen.main.bounds.width , height:UIScreen.main.bounds.width/4 ))
+        vcdelegate?.location = annotation.coordinate
+        self.navigationController?.popViewController(animated: true)
+    }
     
     func initMapView() {
-       
+        
         mapView = MAMapView(frame: self.view.bounds)
         mapView.delegate = self
         self.view.addSubview(mapView!)
         self.view.sendSubview(toBack: mapView!)
     }
     
-    @IBOutlet weak var relocation: UIButton!
     
-    @IBAction func reloaction(_ sender: AnyObject) {
-
+     func reloaction() {
+        
         //单次定位
-       
-            locationManager.requestLocation(withReGeocode: false, completionBlock: { [weak self] (location: CLLocation?, reGeocode: AMapLocationReGeocode?, error: Error?) in
-                print("单次定位开启：")
-                print("dingwei:error:\(error)")
+        
+        locationManager.requestLocation(withReGeocode: false, completionBlock: { [weak self] (location: CLLocation?, reGeocode: AMapLocationReGeocode?, error: Error?) in
+            print("单次定位开启：")
+            print("dingwei:error:\(error)")
             if let error = error {
                 let error = error as NSError
                 print("error：\(error)");
@@ -83,7 +97,7 @@ class MapViewController: UIViewController,MAMapViewDelegate,AMapSearchDelegate,A
                     || error.code == AMapLocationErrorCode.cannotConnectToHost.rawValue {
                     
                     //逆地理错误：在带逆地理的单次定位中，逆地理过程可能发生错误，此时location有返回值，regeocode无返回值，进行annotation的添加
-                  print("逆地理错误:{\(error.code) - \(error.localizedDescription)};")
+                    print("逆地理错误:{\(error.code) - \(error.localizedDescription)};")
                 }
                 else {
                     print("单次定位信息:\(location)")
@@ -91,20 +105,17 @@ class MapViewController: UIViewController,MAMapViewDelegate,AMapSearchDelegate,A
             }
             
             if let location = location {
-               print("location:%@", location)
+                print("location:%@", location)
                 self?.mapView.setCenter(location.coordinate, animated: true)
             }
             
             if let reGeocode = reGeocode {
-               print("reGeocode:%@", reGeocode)
+                print("reGeocode:%@", reGeocode)
             }
             })
-
-    
-        print("userlocation: \(mapView.userLocation!)")
-           // mapView.setCenter(, animated: true)
+        
     }
-
+    
     func initSearch() {
         //        AMap
         search = AMapSearchAPI()
@@ -113,7 +124,7 @@ class MapViewController: UIViewController,MAMapViewDelegate,AMapSearchDelegate,A
     
     
     func mapView(_ mapView: MAMapView!, didSelect view: MAAnnotationView!) {
-         print("点击了大头针222222")
+        print("点击了大头针222222")
         
     }
     
@@ -133,7 +144,7 @@ class MapViewController: UIViewController,MAMapViewDelegate,AMapSearchDelegate,A
             annotationView!.isDraggable = true
             annotationView!.rightCalloutAccessoryView = UIButton(type: UIButtonType.detailDisclosure)
             
-          // let idx = annotation.index(of: annotation as! MAPointAnnotation)
+            // let idx = annotation.index(of: annotation as! MAPointAnnotation)
             annotationView!.pinColor = MAPinAnnotationColor(rawValue: 1000)!
             
             return annotationView!
@@ -142,7 +153,7 @@ class MapViewController: UIViewController,MAMapViewDelegate,AMapSearchDelegate,A
         return nil
     }
     // 发起逆地理编码请求
-
+    
     func searchReGeocodeWithCoordinate(coordinate: CLLocationCoordinate2D!) {
         let regeo: AMapReGeocodeSearchRequest = AMapReGeocodeSearchRequest()
         regeo.location = AMapGeoPoint.location(withLatitude: CGFloat(coordinate.latitude), longitude: CGFloat(coordinate.longitude))
@@ -172,9 +183,9 @@ class MapViewController: UIViewController,MAMapViewDelegate,AMapSearchDelegate,A
             annotation.title = response.regeocode.formattedAddress
             annotation.subtitle = response.regeocode.addressComponent.province
             mapView!.addAnnotation(annotation)
+            self.adresstext.isHidden = false
+            self.adresstext.text = response.regeocode.formattedAddress
         }
     }
-    
-    
-    
+
 }

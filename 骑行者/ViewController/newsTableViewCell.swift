@@ -25,6 +25,7 @@ class newsTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.selectionStyle = .none
         userpic.layer.cornerRadius = userpic.frame.size.width/2.0
         userpic.layer.masksToBounds = true
         commentimage.image = UIImage(icon: .FACommenting, size: CGSize(width:20,height:20), textColor: UIColor.white)

@@ -35,11 +35,7 @@ class newsViewController: UIViewController,UITableViewDelegate, UITableViewDataS
         self.tableView?.reloadData()
     }
     
-    
-    override func viewDidAppear(_ animated: Bool) {
-        
-    }
-    
+
     
     //重新加载数据
     func refreshdata (id:Int){
@@ -79,7 +75,7 @@ class newsViewController: UIViewController,UITableViewDelegate, UITableViewDataS
             //创建一个重用的单元格
             self.tableView!.register(UINib(nibName:"newsTableViewCell", bundle:nil),
                                      forCellReuseIdentifier:"newscell")
-            // self.tableView?.contentSize = CGSize(width: self.view.bounds.size.width, height: CGFloat((self.data?.array?.count)!*200))
+           
             self.tableView?.frame = CGRect(x:0,y:0,width: self.view.bounds.size.width, height: self.view.bounds.size.height-(self.tabBarController?.tabBar.frame.height)!-5)
             
             self.view.addSubview(self.tableView!)
@@ -103,7 +99,7 @@ class newsViewController: UIViewController,UITableViewDelegate, UITableViewDataS
             response in
             let data1 = self.data!.arrayObject!
             let data2 = JSON(response.data).arrayObject!
-            if data2.count >= 10 {
+            if (JSON(response.data).array?.count)! >= 10 {
                 self.loadMoreEnable = true
             }else {
                 self.tableView?.tableFooterView?.isHidden = true
@@ -171,9 +167,8 @@ class newsViewController: UIViewController,UITableViewDelegate, UITableViewDataS
         if (loadMoreEnable && indexPath.row == (data?.array?.count)!-1){
             loadMoreEnable = false
             let id = (self.data?[indexPath.row]["id"].int)!
-            if  id >= 10 {
-                loadmoredata(id: id)
-            }
+            loadmoredata(id: id)
+
         }
         return cell
         
@@ -185,7 +180,8 @@ class newsViewController: UIViewController,UITableViewDelegate, UITableViewDataS
         let vc:newsdetailViewController = sb.instantiateViewController(withIdentifier: "newsdetail") as! newsdetailViewController
         vc.hidesBottomBarWhenPushed = true
         vc.data = self.data?[indexPath.row]
-        
+        vc.infoid = (self.data?[indexPath.row]["id"].int)!
+        print("8888:\(self.data?[indexPath.row]["id"].int)")
         self.navigationController?.pushViewController(vc, animated:true)
         
         

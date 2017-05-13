@@ -33,7 +33,7 @@ class MoonTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollection
         super.awakeFromNib()
         picture.layer.cornerRadius = picture.frame.size.width/2.0
         picture.layer.masksToBounds = true
-        
+        self.selectionStyle = .none
         //设置collectionView的代理
         self.collectionVIew.delegate = self
         self.collectionVIew.dataSource = self
@@ -53,6 +53,9 @@ class MoonTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollection
     @IBAction func vote(_ sender: AnyObject) {
         print("\(votebutton.tag)")
     }
+    
+    
+    
     //加载数据
     func loaddata(data:JSON){
         self.data = data

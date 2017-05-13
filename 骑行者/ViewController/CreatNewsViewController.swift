@@ -40,8 +40,7 @@ class CreatNewsViewController: UIViewController, UITextViewDelegate,UIImagePicke
     
     // 键盘隐藏
     func hidekeyboard(){
-        newstitle.resignFirstResponder()
-        newstext.resignFirstResponder()
+       self.view.endEditing(true)
     }
     //完成创建
    

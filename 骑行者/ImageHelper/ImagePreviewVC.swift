@@ -16,7 +16,7 @@ class ImagePreviewVC: UIViewController {
     var images = [String]()
     // 图片ID
     var data : JSON = []
-    
+    var image :UIImage?
     //默认显示的图片索引
     var index:Int
     
@@ -30,6 +30,7 @@ class ImagePreviewVC: UIViewController {
     init(data:JSON , index:Int = 0){
         self.data = data
         self.index = index
+
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -41,7 +42,7 @@ class ImagePreviewVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //背景设为黑色
-        self.view.backgroundColor = UIColor.black
+        self.view.backgroundColor = UIColor.white
         
         //collectionView尺寸样式设置
         let layout = UICollectionViewFlowLayout()
@@ -56,7 +57,7 @@ class ImagePreviewVC: UIViewController {
         //collectionView初始化
         collectionView = UICollectionView(frame: self.view.bounds,
                                           collectionViewLayout: layout)
-        collectionView.backgroundColor = UIColor.black
+        collectionView.backgroundColor = UIColor.white
         collectionView.register(ImagePreviewCell.self, forCellWithReuseIdentifier: "cell")
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -66,7 +67,7 @@ class ImagePreviewVC: UIViewController {
         //将视图滚动到默认图片上
         let indexPath = IndexPath(item: index, section: 0)
         collectionView.scrollToItem(at: indexPath, at: .left, animated: false)
-        
+    
         //设置页控制器
         pageControl = UIPageControl()
         pageControl.center = CGPoint(x: UIScreen.main.bounds.width/2,
@@ -81,7 +82,7 @@ class ImagePreviewVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         //隐藏导航栏
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
+       // self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
  
     //视图消失时
@@ -110,14 +111,22 @@ extension ImagePreviewVC:UICollectionViewDelegate,UICollectionViewDataSource{
         -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell",
                                             for: indexPath) as! ImagePreviewCell
-        cell.imageView.getbyid(id: data[indexPath.row]["pictures_id"].int!)
+            if self.data != nil {
+                cell.imageView.getbyid(id: data[indexPath.row]["pictures_id"].int!)
+            }else {
+                cell.imageView.image = self.image
+            }
+        cell.navi = self.navigationController
+            cell.view1 = self
         return cell
     }
     
     //collectionView单元格数量
     func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
+        if self.data != nil{
         return data.array!.count
+        }else {return 1}
     }
     
     //collectionView将要显示

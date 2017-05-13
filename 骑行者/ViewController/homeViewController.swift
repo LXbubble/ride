@@ -39,7 +39,7 @@ class homeViewController: FYViewController {
         let moon:UIViewController = moonViewController()
         moon.title = "心情"
         
-        let activity :UIViewController = UIViewController()
+        let activity :UIViewController = activityViewController()
         activity.title = "活动"
         self.addChildViewController(news)
         self.addChildViewController(moon)
@@ -81,9 +81,10 @@ class homeViewController: FYViewController {
                         alertController.addAction(cancelAction)
                         self?.present(alertController, animated: true, completion: nil)
                     }else {
-                        
                         self?.performSegue(withIdentifier: "creatnews", sender: nil)
                     }
+                }else if index == 2{
+                    self?.performSegue(withIdentifier: "creatactivity", sender: nil)
                 }
             }
         }

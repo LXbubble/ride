@@ -10,11 +10,14 @@ import SwiftyJSON
 import Alamofire
 
 
-class MoonDetailViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate {
+class MoonDetailViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,DeleteCommentDelegate {
     
+    @IBOutlet weak var toolbar: UIToolbar!
     let scwidth = UIScreen.main.bounds.size.width
     let scheight = UIScreen.main.bounds.size.height
     
+    
+    var infoid :Int?
     var data :JSON? = []
     var comdata : JSON? = []
     var moontableView : UITableView?
@@ -31,44 +34,69 @@ class MoonDetailViewController: UIViewController,UITableViewDelegate,UITableView
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        //键盘
+        self.hideKeyboardWhenTappedAround()
+        
+  
+//        // 下滑监测
+//        let swipe = UISwipeGestureRecognizer(target:self, action:#selector(swipe(_:)))
+//        swipe.direction = .up
+//        self.view.addGestureRecognizer(swipe)
 
-        let hidebutton = UIButton(frame: CGRect(x: 0, y: 0, width: scwidth, height: scheight))
-        hidebutton.addTarget(self, action: #selector(self.hidekeyboard), for: .touchUpInside)
-        self.view.addSubview(hidebutton)
-        self.view.sendSubview(toBack: hidebutton)
         settableView()
         commenttext.delegate = self
-        
+        getcomments()
         self.navigationItem.title = "详情"
         self.votebutton.setImage(UIImage(icon: .FAThumbsOUp, size:CGSize(width:25,height:25),textColor:.gray), for: .normal)
         self.fxbutton.setImage(UIImage(icon: .FAShareSquareO, size:CGSize(width:25,height:25) ,textColor:.gray ), for: .normal)
+        
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(notification:)), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
         if Int(UserDefaults.standard.string(forKey: "user_id")!) == (data?["user_id"].int)! || UserDefaults.standard.string(forKey: "user_role") == "manager" {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image:UIImage(icon: .FATrashO, size: CGSize(width:25,height:25)),style: .plain, target: self, action:#selector(self.deldetenews))
         }
     }
-   
-    override func viewDidAppear(_ animated: Bool) {
-        getcomments()
-           }
+    
     
     override func viewWillLayoutSubviews() {
+        
         super.viewWillLayoutSubviews()
         let h = (moontableView?.contentSize.height)!
         print("gaodu:\(h)")
-        self.moontableView?.frame =   CGRect(x:0,y:0,width: self.view.bounds.size.width, height:(moontableView?.contentSize.height)!)
-         self.comtableView?.frame = CGRect(x:0,y:h+10,width: self.view.bounds.size.width, height:(comtableView?.contentSize.height)!)
-        let h2 = ((self.comtableView?.frame.origin.y)! +  (self.comtableView?.frame.height)!)
-        scrollView.contentSize = CGSize(width: scwidth, height: h2)
+            let h2 = ((self.comtableView?.frame.origin.y)! +  (comtableView?.contentSize.height)!)
+            scrollView.contentSize = CGSize(width: scwidth, height: h2)
+            self.moontableView?.frame = CGRect(x:0,y:0,width: self.view.bounds.size.width, height:(moontableView?.contentSize.height)!)
+            self.comtableView?.frame = CGRect(x:0,y:h+10,width: self.view.bounds.size.width, height:(comtableView?.contentSize.height)!)
+            scrollView.layoutIfNeeded()
+        
+
     }
-   
+//    //  向下滑动
+//    func swipe(_ recognizer:UISwipeGestureRecognizer){
+//        print("swipe ok")
+//        self.view.endEditing(true)
+//       
+//    }
+    //
+    
+    func getinfo(){
+        let url = "information/information/getnewsbyid/id/\(self.infoid!)"
+        Aget(url: url){
+            data in
+            print("getbyid:\(data)")
+            self.data = data[0]
+            self.moontableView?.reloadData()
+        }
+    }
     func getcomments(){
         let url = "information/comment/getcomments/id/\((self.data?["id"].int)!)"
         Aget(url: url){
             data in
             self.comdata = data
+            self.getinfo()
             self.comtableView?.reloadData()
+            self.viewWillLayoutSubviews()
             print("评论数据：\(data)")
         }
     }
@@ -78,7 +106,8 @@ class MoonDetailViewController: UIViewController,UITableViewDelegate,UITableView
     //键盘done 设置  发送评论
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if self.commenttext.text == ""{
-            self.commenttext.resignFirstResponder()
+            //self.commenttext.resignFirstResponder()
+            self.view.endEditing(true)
             return true
         }else if !readtoken()
         {   self.commenttext.resignFirstResponder()
@@ -95,8 +124,9 @@ class MoonDetailViewController: UIViewController,UITableViewDelegate,UITableView
                 data in
                 print("评论data:\(data)")
                 if data.bool! == true{
-                    self.comtableView?.reloadData()
+                    
                     self.commenttext.resignFirstResponder()
+                    self.getcomments()
                     self.commenttext.text = ""
                 }
             }
@@ -132,17 +162,17 @@ class MoonDetailViewController: UIViewController,UITableViewDelegate,UITableView
         self.comtableView = UITableView(frame:UIScreen.main.bounds, style: .plain)
         self.comtableView!.delegate = self
         self.comtableView!.dataSource = self
-//        self.comtableView!.backgroundColor = UIColor(red: 0xf0/255, green: 0xf0/255,
-//                                                     blue: 0xf0/255, alpha: 1)
-       
+        self.comtableView!.backgroundColor = UIColor(red: 0xf0/255, green: 0xf0/255,
+                                                     blue: 0xf0/255, alpha: 1)
+        //self.comtableView?.tableFooterView = UIView()
         self.comtableView?.isScrollEnabled = false
         self.comtableView!.register(UINib(nibName:"comTableViewCell", bundle:nil),
                                     forCellReuseIdentifier:"comcell")
-        self.comtableView!.estimatedRowHeight = 240
+        self.comtableView!.estimatedRowHeight = 100
         self.comtableView!.rowHeight = UITableViewAutomaticDimension
-        self.comtableView!.separatorStyle = .none
+        //self.comtableView!.separatorStyle = .none
         // 设置滚动视图
-        scrollView.frame = CGRect(x:0,y:(self.navigationController?.navigationBar.frame.height)!+30,width: self.view.bounds.size.width, height:scheight-110)
+        scrollView.frame = CGRect(x:0,y:(self.navigationController?.navigationBar.frame.height)!+25,width: self.view.bounds.size.width, height:scheight-115)
         scrollView.alwaysBounceVertical = true
         
         let hidebutton = UIButton(frame: CGRect(x: 0, y: 0, width: scwidth, height: scheight))
@@ -160,7 +190,7 @@ class MoonDetailViewController: UIViewController,UITableViewDelegate,UITableView
     
     //隐藏键盘
     func hidekeyboard(){
-            self.commenttext.resignFirstResponder()
+           self.view.endEditing(true)
     }
     
     @IBAction func share(_ sender: AnyObject) {
@@ -297,6 +327,10 @@ class MoonDetailViewController: UIViewController,UITableViewDelegate,UITableView
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(indexPath.row)
+        if tableView == comtableView {
+            self.commenttext.text  = "回复@\((comdata?[indexPath.row]["nickname"].string)!):   "
+            self.commenttext.becomeFirstResponder()
+        }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -314,11 +348,6 @@ class MoonDetailViewController: UIViewController,UITableViewDelegate,UITableView
             let cmt = (data?["comcount"].int)!
             cell.comcount.text = "\(cmt)"
             cell.votecount.text = "\(vtc)"
-            cell.selectedBackgroundView?.backgroundColor = .white
-//            cell.votecount.isHidden = true
-//            cell.votebutton.isHidden = true
-//            cell.comcount.isHidden = true
-//            cell.comment.isHidden = true
             cell.frame = (moontableView?.bounds)!
             //print("bounds \(tableView.bounds)")
             cell.navi = self.navigationController
@@ -333,37 +362,69 @@ class MoonDetailViewController: UIViewController,UITableViewDelegate,UITableView
             cell.nickname.text = comdata?[indexPath.row]["nickname"].string!
             cell.time.text = comdata?[indexPath.row]["update_time"].string!
             cell.comtext.text = comdata?[indexPath.row]["detail"].string!
+            let index = indexPath.row + 1
+            cell.ceng.text = "\(index)楼"
+            
+            cell.delbutton.tag = indexPath.row
+            
+            cell.deletecomDelegate = self
+            
+            print("userid:\(UserDefaults.standard.string(forKey:"user_id"))","user_id:\(comdata?[indexPath.row]["uid"].int)",UserDefaults.standard.string(forKey: "user_role"))
+            if !readtoken() && UserDefaults.standard.string(forKey:"user_id")! != "\((comdata?[indexPath.row]["uid"].int)!)" && UserDefaults.standard.string(forKey: "user_role")! != "manager"{
+                print("userid: should hide")
+                print(comdata?[indexPath.row])
+                print("userid:\(UserDefaults.standard.string(forKey:"user_id")!)","user_id:\((comdata?[indexPath.row]["uid"].int)!)",UserDefaults.standard.string(forKey: "user_role")!)
+                cell.delbutton.isHidden = true
+            }
             cell.frame = (comtableView?.bounds)!
-            cell.selectedBackgroundView?.backgroundColor = .white
             cell.layoutIfNeeded()
             return cell
         }
     }
     
     
+    //删除评论
+    func deletecom(tag: Int) {
+        let alert = UIAlertController(title: "系统提示", message:"确定删除吗", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+        let creatAction = UIAlertAction(title: "确定", style:.default, handler: {
+            action in
+            
+            print("deletecom \(tag)")
+            let url = "information/comment/delcomments"
+            let arr = ["token":(UserDefaults.standard.string(forKey: "token")!),"id":(self.comdata?[tag]["id"].int)!] as [String : Any]
+            Apost(url: url, body: arr){
+                data in
+                if data.bool! {
+                    self.getcomments()
+                }
+            }
+            }
+        )
+        alert.addAction(creatAction)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true, completion: nil)
+    }
     
     //键盘弹起响应
     func keyboardWillShow(notification: NSNotification) {
-        print("show")
+        print("kbd:show")
         if let userInfo = notification.userInfo,
             let value = userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue,
             let duration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? Double,
             let curve = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? UInt {
             
             let frame = value.cgRectValue
-            let intersection = frame.intersection(self.view.frame)
             
-            let deltaY = intersection.height
+            let h = self.toolbar.frame.height
+            UIView.animate(withDuration: duration, delay: 0.0,
+                           options: UIViewAnimationOptions(rawValue: curve),
+                           animations: { _ in
+                            self.toolbar.frame = CGRect(x:0,y:self.view.bounds.height-frame.height-h,width:self.view.bounds.width,height:h)
+                            self.scrollView.frame = CGRect(x:0,y:self.scrollView.frame.origin.y,width:self.view.bounds.width,height:self.view.bounds.height-frame.height-h-self.scrollView.frame.origin.y)
+                            //self.toolbar.frame = CGRect(x:0,y:self.scheight-45-frame.height,width:self.view.bounds.width,height:45)
+                }, completion: nil)
             
-            if keyBoardNeedLayout {
-                UIView.animate(withDuration: duration, delay: 0.0,
-                               options: UIViewAnimationOptions(rawValue: curve),
-                               animations: { _ in
-                                self.view.frame = CGRect(x:0,y:-deltaY,width:self.view.bounds.width,height:self.view.bounds.height)
-                                self.keyBoardNeedLayout = false
-                                self.view.layoutIfNeeded()
-                    }, completion: nil)
-            }
             
             
         }
@@ -371,28 +432,23 @@ class MoonDetailViewController: UIViewController,UITableViewDelegate,UITableView
     
     //键盘隐藏响应
     func keyboardWillHide(notification: NSNotification) {
-        print("hide")
+        print("kbd:hide")
         if let userInfo = notification.userInfo,
-            let value = userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue,
+            
             let duration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? Double,
             let curve = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? UInt {
-            
-            let frame = value.cgRectValue
-            let intersection = frame.intersection(self.view.frame)
-            
-            let deltaY = intersection.height
-            
+            let h = self.toolbar.frame.height
             UIView.animate(withDuration: duration, delay: 0.0,
                            options: UIViewAnimationOptions(rawValue: curve),
                            animations: { _ in
-                            self.view.frame = CGRect(x:0,y:deltaY,width:self.view.bounds.width,height:self.view.bounds.height)
-                            self.keyBoardNeedLayout = true
-                            self.view.layoutIfNeeded()
+                            self.toolbar.frame = CGRect(x:0,y:self.view.bounds.height-h,width:self.view.bounds.width,height:h)
+                            
+                            self.scrollView.frame = CGRect(x:0,y:self.scrollView.frame.origin.y,width:self.view.bounds.width,height:self.view.bounds.height-h-self.scrollView.frame.origin.y)
+                            
                 }, completion: nil)
             
         }
     }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

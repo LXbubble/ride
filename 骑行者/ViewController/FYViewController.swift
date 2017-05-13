@@ -31,9 +31,6 @@ class FYViewController: UIViewController,UIScrollViewDelegate {
         super.viewDidLoad()
         
         
-        
-        
-        
         automaticallyAdjustsScrollViewInsets = false
         view.backgroundColor = UIColor.white
         setupTitleScrollViewFunction()

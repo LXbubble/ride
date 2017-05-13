@@ -64,6 +64,7 @@
 	</array>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
+		<string>iosamap</string>
 		<string>wechat</string>
 		<string>weixin</string>
 		<string>sinaweibohd</string>
@@ -100,6 +101,8 @@
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAllowsArbitraryLoads</key>
+	<string>true</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
@@ -112,9 +115,7 @@
 	<key>NSHumanReadableCopyright</key>
 	<string></string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>yes</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>yes</string>
+	<string>始终允许应用访问位置信息</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>microphoneDesciption</string>
 	<key>NSPhotoLibraryUsageDescription</key>

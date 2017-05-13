@@ -26,24 +26,25 @@
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="add" translatesAutoresizingMaskIntoConstraints="NO" id="kqM-Hi-9sg">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kqM-Hi-9sg">
                         <frame key="frameInset" minX="8" minY="10" width="30" height="30"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                         <color key="backgroundColor" red="0.27039262820512822" green="0.27039262820512822" blue="0.27039262820512822" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" red="0.070806620050000005" green="0.44796149909999999" blue="0.98406822640000002" alpha="1" colorSpace="calibratedRGB"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="昵称" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jup-v0-ho2">
-                        <frame key="frameInset" minX="46" minY="10" width="371" height="16"/>
+                        <frame key="frameInset" minX="46" minY="10" width="368" height="16"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="371" id="7Bl-Eq-fbC"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="FYE-gQ-Zhx"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="izr-l4-DYn">
                         <frame key="frameInset" minX="8" minY="46" width="401" height="14"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -67,7 +68,7 @@
                         <state key="normal" image="comment"/>
                     </button>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="22k-qJ-A1U">
-                        <frame key="frameInset" minX="5" minY="45.5" width="401" height="150"/>
+                        <frame key="frameInset" minX="5" minY="68" width="401" height="128"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="150" id="k8t-Lp-wZy"/>
@@ -147,11 +148,10 @@
                 <outlet property="votebutton" destination="vOi-Ji-CNq" id="8Y5-sA-wxO"/>
                 <outlet property="votecount" destination="Jbz-sZ-m0z" id="14o-9o-E6L"/>
             </connections>
-            <point key="canvasLocation" x="-141" y="-121"/>
+            <point key="canvasLocation" x="-145" y="-134.5"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="add" width="200" height="200"/>
         <image name="comment" width="200" height="200"/>
         <image name="good" width="100" height="100"/>
     </resources>

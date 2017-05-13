@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		18005BF41EC415E200979B8C /* comTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18005BF21EC415E200979B8C /* comTableViewCell.swift */; };
 		18005BF51EC415E200979B8C /* comTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18005BF31EC415E200979B8C /* comTableViewCell.xib */; };
+		181123381EC6D05100F79627 /* adressMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181123371EC6D05100F79627 /* adressMapViewController.swift */; };
 		181BE09E1E93AFCF00CD1CD5 /* SliderGalleryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181BE09C1E93AFCF00CD1CD5 /* SliderGalleryController.swift */; };
 		1821FC3D1EBD62300088825D /* AlbumToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1821FC2A1EBD62300088825D /* AlbumToolbarView.swift */; };
 		1821FC3E1EBD62300088825D /* ImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1821FC2B1EBD62300088825D /* ImageModel.swift */; };
@@ -47,6 +48,7 @@
 		185B14A51E8CC94600C4DDB1 /* LoadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187443ED1E86AD8D0049E0C8 /* LoadViewController.swift */; };
 		186705641EB831F00004F457 /* SwiftPopMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186705631EB831F00004F457 /* SwiftPopMenu.swift */; };
 		186705661EB83E320004F457 /* MoonCreatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186705651EB83E320004F457 /* MoonCreatViewController.swift */; };
+		18687A3D1EC5B0D300E5D498 /* CreatactivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18687A3C1EC5B0D300E5D498 /* CreatactivityViewController.swift */; };
 		186970E61E890A6600930523 /* getpost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186970E51E890A6600930523 /* getpost.swift */; };
 		187443F11E86B5630049E0C8 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 187443EF1E86B5630049E0C8 /* TencentOpenApi_IOS_Bundle.bundle */; };
 		187443F21E86B5630049E0C8 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 187443F01E86B5630049E0C8 /* TencentOpenAPI.framework */; };
@@ -112,6 +114,10 @@
 		18F91E171EA334AA004AE4FE /* FYViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F91E161EA334AA004AE4FE /* FYViewController.swift */; };
 		18F91E1A1EA334FC004AE4FE /* UIButton+ColorScale.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F91E191EA334FC004AE4FE /* UIButton+ColorScale.m */; };
 		18F91E1C1EA33553004AE4FE /* homeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F91E1B1EA33553004AE4FE /* homeViewController.swift */; };
+		18FDF95C1EC61C0C00F5DBB0 /* activityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FDF95A1EC61C0C00F5DBB0 /* activityTableViewCell.swift */; };
+		18FDF95D1EC61C0C00F5DBB0 /* activityTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18FDF95B1EC61C0C00F5DBB0 /* activityTableViewCell.xib */; };
+		18FDF95F1EC620B200F5DBB0 /* activityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FDF95E1EC620B200F5DBB0 /* activityViewController.swift */; };
+		18FDF9611EC635C700F5DBB0 /* activityDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FDF9601EC635C700F5DBB0 /* activityDetailViewController.swift */; };
 		DE21681DFAC2FA5284C0AE5E /* Pods____.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F5A44F6229F23EE9C47EC66 /* Pods____.framework */; };
 /* End PBXBuildFile section */
 
@@ -135,6 +141,7 @@
 /* Begin PBXFileReference section */
 		18005BF21EC415E200979B8C /* comTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = comTableViewCell.swift; sourceTree = "<group>"; };
 		18005BF31EC415E200979B8C /* comTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = comTableViewCell.xib; sourceTree = "<group>"; };
+		181123371EC6D05100F79627 /* adressMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = adressMapViewController.swift; sourceTree = "<group>"; };
 		181BE09C1E93AFCF00CD1CD5 /* SliderGalleryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SliderGalleryController.swift; path = ../SliderGalleryController.swift; sourceTree = "<group>"; };
 		1821FC2A1EBD62300088825D /* AlbumToolbarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumToolbarView.swift; sourceTree = "<group>"; };
 		1821FC2B1EBD62300088825D /* ImageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageModel.swift; sourceTree = "<group>"; };
@@ -168,6 +175,7 @@
 		1858F9581E8F614700CF960F /* phoneRegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = phoneRegisterViewController.swift; path = ../phoneRegisterViewController.swift; sourceTree = "<group>"; };
 		186705631EB831F00004F457 /* SwiftPopMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftPopMenu.swift; sourceTree = "<group>"; };
 		186705651EB83E320004F457 /* MoonCreatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoonCreatViewController.swift; sourceTree = "<group>"; };
+		18687A3C1EC5B0D300E5D498 /* CreatactivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatactivityViewController.swift; sourceTree = "<group>"; };
 		186970E51E890A6600930523 /* getpost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = getpost.swift; sourceTree = "<group>"; };
 		187443E61E86A8310049E0C8 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		187443ED1E86AD8D0049E0C8 /* LoadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoadViewController.swift; path = ../LoadViewController.swift; sourceTree = "<group>"; };
@@ -253,6 +261,10 @@
 		18F91E181EA334FC004AE4FE /* UIButton+ColorScale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+ColorScale.h"; sourceTree = "<group>"; };
 		18F91E191EA334FC004AE4FE /* UIButton+ColorScale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+ColorScale.m"; sourceTree = "<group>"; };
 		18F91E1B1EA33553004AE4FE /* homeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = homeViewController.swift; sourceTree = "<group>"; };
+		18FDF95A1EC61C0C00F5DBB0 /* activityTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = activityTableViewCell.swift; sourceTree = "<group>"; };
+		18FDF95B1EC61C0C00F5DBB0 /* activityTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = activityTableViewCell.xib; sourceTree = "<group>"; };
+		18FDF95E1EC620B200F5DBB0 /* activityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = activityViewController.swift; sourceTree = "<group>"; };
+		18FDF9601EC635C700F5DBB0 /* activityDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = activityDetailViewController.swift; sourceTree = "<group>"; };
 		27106EAA19864EE9195673BE /* Pods-骑行者.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-骑行者.release.xcconfig"; path = "Pods/Target Support Files/Pods-骑行者/Pods-骑行者.release.xcconfig"; sourceTree = "<group>"; };
 		2F5A44F6229F23EE9C47EC66 /* Pods____.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods____.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD519F26E54B99BB5894DCC8 /* Pods-骑行者.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-骑行者.debug.xcconfig"; path = "Pods/Target Support Files/Pods-骑行者/Pods-骑行者.debug.xcconfig"; sourceTree = "<group>"; };
@@ -558,6 +570,7 @@
 				18AF22341E8BB44400BDB1ED /* zhuceViewController.swift */,
 				1858F9581E8F614700CF960F /* phoneRegisterViewController.swift */,
 				18478D651E92351000C414AA /* MapViewController.swift */,
+				181123371EC6D05100F79627 /* adressMapViewController.swift */,
 				18A356961E926A9A00662F7C /* TabBarController.swift */,
 				18F91E161EA334AA004AE4FE /* FYViewController.swift */,
 				18F91E1B1EA33553004AE4FE /* homeViewController.swift */,
@@ -567,6 +580,9 @@
 				18EB83301EC016F80043161B /* newsdetailViewController.swift */,
 				18C7A7A71EC1A3EA00C702D0 /* moonViewController.swift */,
 				18C8486B1EC31522003AC40D /* MoonDetailViewController.swift */,
+				18687A3C1EC5B0D300E5D498 /* CreatactivityViewController.swift */,
+				18FDF95E1EC620B200F5DBB0 /* activityViewController.swift */,
+				18FDF9601EC635C700F5DBB0 /* activityDetailViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -594,6 +610,8 @@
 				18C7A7A41EC194E200C702D0 /* MyCollectionViewCell.xib */,
 				18005BF21EC415E200979B8C /* comTableViewCell.swift */,
 				18005BF31EC415E200979B8C /* comTableViewCell.xib */,
+				18FDF95A1EC61C0C00F5DBB0 /* activityTableViewCell.swift */,
+				18FDF95B1EC61C0C00F5DBB0 /* activityTableViewCell.xib */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -742,6 +760,7 @@
 				1821FC411EBD62300088825D /* PhotoAlbumTableViewCell.xib in Resources */,
 				18A862EB1E86A15900D5C757 /* Assets.xcassets in Resources */,
 				187443F11E86B5630049E0C8 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
+				18FDF95D1EC61C0C00F5DBB0 /* activityTableViewCell.xib in Resources */,
 				18A862E91E86A15900D5C757 /* Main.storyboard in Resources */,
 				189B8FE11E915DBE006071F9 /* FontAwesome.ttf in Resources */,
 				18DDF00D1E9632C10080BEF7 /* MoonTableViewCell.xib in Resources */,
@@ -836,6 +855,7 @@
 				18C7A7AC1EC1EF0B00C702D0 /* ImagePreviewCell.swift in Sources */,
 				18A295F91E9398F3009EF069 /* GuideViewController.swift in Sources */,
 				18AF22351E8BB44400BDB1ED /* zhuceViewController.swift in Sources */,
+				181123381EC6D05100F79627 /* adressMapViewController.swift in Sources */,
 				1858F9591E8F614700CF960F /* phoneRegisterViewController.swift in Sources */,
 				1821FC4C1EBD62300088825D /* PhotoPreviewToolbarView.swift in Sources */,
 				18C7A7A51EC194E200C702D0 /* MyCollectionViewCell.swift in Sources */,
@@ -855,7 +875,9 @@
 				1821FC461EBD62300088825D /* PhotoImage.swift in Sources */,
 				1821FC3F1EBD62300088825D /* PhotoAlbumsTableViewController.swift in Sources */,
 				186705661EB83E320004F457 /* MoonCreatViewController.swift in Sources */,
+				18FDF95C1EC61C0C00F5DBB0 /* activityTableViewCell.swift in Sources */,
 				1821FC471EBD62300088825D /* PhotoImageManager.swift in Sources */,
+				18FDF95F1EC620B200F5DBB0 /* activityViewController.swift in Sources */,
 				18C7A7AB1EC1EF0B00C702D0 /* ImagePreviewVC.swift in Sources */,
 				181BE09E1E93AFCF00CD1CD5 /* SliderGalleryController.swift in Sources */,
 				18F91E1A1EA334FC004AE4FE /* UIButton+ColorScale.m in Sources */,
@@ -863,8 +885,10 @@
 				18C7A7A81EC1A3EA00C702D0 /* moonViewController.swift in Sources */,
 				18DDF0111E963C1C0080BEF7 /* ImageVIewExtension.swift in Sources */,
 				18DDF00C1E9632C10080BEF7 /* MoonTableViewCell.swift in Sources */,
+				18FDF9611EC635C700F5DBB0 /* activityDetailViewController.swift in Sources */,
 				1821FC581EBD9B660088825D /* newsTableViewCell.swift in Sources */,
 				1821FC5B1EBE08130088825D /* newsViewController.swift in Sources */,
+				18687A3D1EC5B0D300E5D498 /* CreatactivityViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

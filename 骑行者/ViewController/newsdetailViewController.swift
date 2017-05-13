@@ -9,26 +9,58 @@
 import UIKit
 import SwiftyJSON
 import Alamofire
-class newsdetailViewController: UIViewController {
+class newsdetailViewController: UIViewController,UITableViewDelegate,UITableViewDataSource ,UITextFieldDelegate,DeleteCommentDelegate{
     
     
     let scwidth = UIScreen.main.bounds.size.width
     let scheight = UIScreen.main.bounds.size.height
-    
+    var comdata:JSON? = []
     var data :JSON? = []
-    
+    var infoid :Int?
     var iscollect = false
     var bkimage: UIImageView?
-
-
+    
+    
+    var comtableView:UITableView?
+    
+    
     @IBOutlet weak var votebutton: UIButton!
     @IBOutlet weak var fxbutton: UIButton!
     @IBOutlet weak var commenttext: UITextField!
+    
+    @IBOutlet weak var upicture: UIImageView!
+    @IBOutlet weak var nickname: UILabel!
+    @IBOutlet weak var newstitle: UILabel!
+    @IBOutlet weak var backimage: UIImageView!
+    @IBOutlet weak var detail: UILabel!
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var toolbar: UIToolbar!
+    
+    
+    
+    
+    
     
     var keyBoardNeedLayout: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.backimage?.isUserInteractionEnabled = true
+        /////添加tapGuestureRecognizer手势
+        let tapGR = UITapGestureRecognizer(target: self, action: #selector(self.imagetap))
+        self.backimage?.addGestureRecognizer(tapGR)
+        
+        self.nickname.sizeToFit()
+        
+        upicture.layer.cornerRadius = upicture.frame.size.width/2.0
+        upicture.layer.masksToBounds = true
+        self.hideKeyboardWhenTappedAround()
+        //设置数据
+        setdata()
+        getcomments()
+        settable()
+        self.commenttext.delegate = self
         self.bkimage?.getbyid(id: data!["pictures_id"].int!)
         self.votebutton.setImage(UIImage(icon: .FAThumbsOUp, size:CGSize(width:25,height:25) ,textColor:.gray ), for: .normal)
         self.fxbutton.setImage(UIImage(icon: .FAShareSquareO, size:CGSize(width:25,height:25) ,textColor:.gray ), for: .normal)
@@ -53,14 +85,87 @@ class newsdetailViewController: UIViewController {
         }
     }
     
+    override func viewWillLayoutSubviews() {
+        
+        super.viewWillLayoutSubviews()
+        let h1 = self.detail.frame.origin.y + self.detail.frame.height
+        self.comtableView?.frame = CGRect(x:0,y:h1+5,width: self.view.bounds.size.width, height:(comtableView?.contentSize.height)!)
+        let h2 = ((self.comtableView?.frame.origin.y)! + (comtableView?.contentSize.height)!)
+        print("8888:self\(self.comtableView?.frame.height)")
+        scrollView.contentSize = CGSize(width: scwidth, height: h2+30)
+        scrollView.layoutIfNeeded()
+    }
     
+    //设置tableview
+    func settable(){
+        //设置评论 comtableview
+        self.comtableView = UITableView(frame:UIScreen.main.bounds, style: .plain)
+        self.comtableView!.delegate = self
+        self.comtableView!.dataSource = self
+        self.comtableView!.backgroundColor = UIColor(red: 0xf0/255, green: 0xf0/255,
+                                                     blue: 0xf0/255, alpha: 1)
+        //self.comtableView?.tableFooterView = UIView()
+        self.comtableView?.isScrollEnabled = false
+        self.comtableView!.register(UINib(nibName:"comTableViewCell", bundle:nil),
+                                    forCellReuseIdentifier:"comcell")
+        self.comtableView!.estimatedRowHeight = 100
+        self.comtableView!.rowHeight = UITableViewAutomaticDimension
+        // 设置滚动视图
+        scrollView.alwaysBounceVertical = true
+        let hidebutton = UIButton(frame: CGRect(x: 0, y: 0, width: scwidth, height: scheight))
+        hidebutton.addTarget(self, action: #selector(self.hidekeyboard), for: .touchUpInside)
+        scrollView.frame = CGRect(x:0,y:0,width: self.view.bounds.size.width, height:scheight-45)
+        scrollView.addSubview(hidebutton)
+        scrollView.sendSubview(toBack: hidebutton)
+        scrollView.addSubview(self.comtableView!)
+    }
+    
+    //图片点击
+    func imagetap(){
+        let previewVC = ImagePreviewVC( data:nil ,index:0)
+        previewVC.image = self.backimage.image
+        self.navigationController?.pushViewController(previewVC, animated: true)
+    }
+    
+    //设置数据
+    func setdata(){
+        self.reloaddata()
+        self.upicture.getbyid(id: (data?["pid"].int)!)
+        self.nickname.text = data!["nickname"].string
+        self.backimage.getbyid(id: (data?["pictures_id"].int)!)
+        self.newstitle.text = data?["name"].string
+        self.detail.text = data?["detail"].string
+    }
+    
+    //重新加载数据
+    func reloaddata(){
+        let url = "information/information/getnewsbyid/id/\((self.infoid)!)"
+        Aget(url: url){
+            data in
+            self.data = data[0]
+        }
+        
+    }
+    // 获取评论数据
+    func getcomments(){
+        let url = "information/comment/getcomments/id/\((self.data?["id"].int)!)"
+        Aget(url: url){
+            data in
+            self.comdata = data
+            self.comtableView?.reloadData()
+            self.viewWillLayoutSubviews()
+            print("评论数据：\(data)")
+        }
+    }
+    
+    //判断是否收藏
     func didcollect(next: @escaping (Bool)->()){
         if readtoken(){
             let url = "information/information/iscollect"
             let arr = ["information_id":(self.data?["id"].int)!,"user_id":(UserDefaults.standard.string(forKey: "user_id"))!] as [String : Any]
             print(arr)
             Apost(url: url, body: arr){ data in
-                 next(data.bool!)
+                next(data.bool!)
             }
         }else {
             next (false)
@@ -71,7 +176,7 @@ class newsdetailViewController: UIViewController {
     func collectnews(){
         if readtoken(){
             let url = "information/information/collect"
-            var arr = ["information_id":(self.data?["id"].int)!,"user_id":(UserDefaults.standard.string(forKey: "user_id"))!] as [String : Any]
+            let arr = ["information_id":(self.data?["id"].int)!,"user_id":(UserDefaults.standard.string(forKey: "user_id"))!] as [String : Any]
             print(arr)
             Apost(url: url, body: arr){ data in
                 print("收藏：\(data)")
@@ -100,11 +205,11 @@ class newsdetailViewController: UIViewController {
         let alert = UIAlertController.init(title:  "分享到：", message: nil, preferredStyle: .actionSheet)
         let actionCancel = UIAlertAction.init(title: "取消", style: .cancel, handler: nil)
         let actionCamera = UIAlertAction.init(title: "QQ", style: .default) { (UIAlertAction) -> Void in
-           //方法
+            //方法
             self.sharenews(type: SSDKPlatformType.typeQQ)
         }
         let actionPhoto = UIAlertAction.init(title: "新浪微博", style: .default) { (UIAlertAction) -> Void in
-           //方法
+            //方法
             self.sharenews(type: SSDKPlatformType.typeSinaWeibo)
         }
         
@@ -113,7 +218,7 @@ class newsdetailViewController: UIViewController {
         alert.addAction(actionPhoto)
         
         self.present(alert, animated: true, completion: nil)
-
+        
         
     }
     func  sharenews(type:SSDKPlatformType){
@@ -127,12 +232,12 @@ class newsdetailViewController: UIViewController {
         
         //2.进行分享
         ShareSDK.share(type, parameters: shareParames) { (state : SSDKResponseState, nil, entity : SSDKContentEntity?, error :Error?) in
-
+            
             if state == SSDKResponseState.success {
-            let alert = UIAlertController.init(title:  "分享成功", message: nil, preferredStyle: .alert)
-            let actionCancel = UIAlertAction.init(title: "确定", style: .cancel, handler: nil)
-            alert.addAction(actionCancel)
-            self.present(alert, animated: true, completion: nil)
+                let alert = UIAlertController.init(title:  "分享成功", message: nil, preferredStyle: .alert)
+                let actionCancel = UIAlertAction.init(title: "确定", style: .cancel, handler: nil)
+                alert.addAction(actionCancel)
+                self.present(alert, animated: true, completion: nil)
             }else if state == SSDKResponseState.fail{
                 let alert = UIAlertController.init(title:  "分享失败", message:"\(error)", preferredStyle: .alert)
                 let actionCancel = UIAlertAction.init(title: "确定", style: .cancel, handler: nil)
@@ -149,16 +254,6 @@ class newsdetailViewController: UIViewController {
                 alert.addAction(actionCancel)
                 self.present(alert, animated: true, completion: nil)
             }
-//
-//            switch state{
-//                
-//            case SSDKResponseState.success: print("分享成功")
-//            case SSDKResponseState.fail:    print("授权失败,错误描述:\(error)")
-//            case SSDKResponseState.cancel:  print("操作取消")
-//            default:
-//                break
-//            }
-            
         }
     }
     //点赞
@@ -166,10 +261,10 @@ class newsdetailViewController: UIViewController {
         
         
         if !readtoken(){
-        let sb = UIStoryboard(name: "Main", bundle: nil)
-        let vc = sb.instantiateViewController(withIdentifier: "loadview") as! LoadViewController
-        vc.hidesBottomBarWhenPushed = true
-        self.navigationController?.pushViewController(vc, animated:true)
+            let sb = UIStoryboard(name: "Main", bundle: nil)
+            let vc = sb.instantiateViewController(withIdentifier: "loadview") as! LoadViewController
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc, animated:true)
         }else {
             let url = "information/information/vote/id/\((data?["id"].int)!)"
             Alamofire.request(urladd(url: url)).response{
@@ -210,39 +305,134 @@ class newsdetailViewController: UIViewController {
                     self.present(alert, animated: true, completion: nil)
                 }
             }
-    })
-    alert.addAction(creatAction)
-    alert.addAction(cancelAction)
-    self.present(alert, animated: true, completion: nil)
-}
+        })
+        alert.addAction(creatAction)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    //comtableView 代理
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("\(indexPath.row)")
         
+        self.commenttext.text  = "回复@\((comdata?[indexPath.row]["nickname"].string)!):   "
+        self.commenttext.becomeFirstResponder()
+
+        
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return (comdata?.array?.count)!
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "comcell", for: indexPath) as! comTableViewCell
+        cell.picture.getbyid(id:(comdata?[indexPath.row]["pid"].int)!)
+        cell.nickname.text = comdata?[indexPath.row]["nickname"].string!
+        cell.time.text = comdata?[indexPath.row]["update_time"].string!
+        cell.comtext.text = comdata?[indexPath.row]["detail"].string!
+        let index = indexPath.row + 1
+        cell.ceng.text = "\(index)楼"
+        cell.delbutton.tag = indexPath.row
+        cell.deletecomDelegate = self
+
+        if(UserDefaults.standard.string(forKey:"user_id") == "\(comdata?[indexPath.row]["uid"].int)!)")||(UserDefaults.standard.string(forKey: "user_role")! == "manager"){
+            
+            print(comdata?[indexPath.row])
+            print("userid:\(UserDefaults.standard.string(forKey:"user_id"))","user_id:\(comdata?[indexPath.row]["uid"].int)",UserDefaults.standard.string(forKey: "user_role"))
+            cell.delbutton.isHidden = false        }
+        cell.frame = (comtableView?.bounds)!
+        cell.layoutIfNeeded()
+        return cell
+    }
     
     
     
+    //键盘done 设置  发送评论
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if self.commenttext.text == ""{
+            //self.commenttext.resignFirstResponder()
+            self.view.endEditing(true)
+            return true
+        }else if !readtoken()
+        {   self.commenttext.resignFirstResponder()
+            let sb = UIStoryboard(name: "Main", bundle: nil)
+            let vc = sb.instantiateViewController(withIdentifier: "loadview") as! LoadViewController
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc, animated:true)
+            return true
+        }
+        else{
+            let arr = ["token":(UserDefaults.standard.string(forKey: "token"))!,"user_id":(UserDefaults.standard.string(forKey: "user_id"))!,"information_id":(data?["id"].int)!,"detail":(self.commenttext.text)!] as [String : Any]
+            let url = "information/comment/setcomments"
+            Apost(url: url, body: arr){
+                data in
+                print("评论data:\(data)")
+                if data.bool! == true{
+                    self.commenttext.resignFirstResponder()
+                    
+                    
+                    self.getcomments()
+                    self.commenttext.text = ""
+                }
+            }
+            return true
+        }
+        
+    }
+    //删除评论
+    func deletecom(tag: Int) {
+        let alert = UIAlertController(title: "系统提示", message:"确定删除吗", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+        let creatAction = UIAlertAction(title: "确定", style:.default, handler: {
+            action in
+            
+            print("deletecom \(tag)")
+            let url = "information/comment/delcomments"
+            let arr = ["token":(UserDefaults.standard.string(forKey: "token")!),"id":(self.comdata?[tag]["id"].int)!] as [String : Any]
+            Apost(url: url, body: arr){
+                data in
+                if data.bool! {
+                    self.getcomments()
+                }
+            }
+            }
+        )
+        alert.addAction(creatAction)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    
+    //隐藏键盘
+    func hidekeyboard(){
+        self.commenttext.resignFirstResponder()
+    }
     
     
     //键盘弹起响应
     func keyboardWillShow(notification: NSNotification) {
-        print("show")
+        print("kbd:show")
         if let userInfo = notification.userInfo,
             let value = userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue,
             let duration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? Double,
             let curve = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? UInt {
             
             let frame = value.cgRectValue
-            let intersection = frame.intersection(self.view.frame)
             
-            let deltaY = intersection.height
+            let h = self.toolbar.frame.height
+            UIView.animate(withDuration: duration, delay: 0.0,
+                           options: UIViewAnimationOptions(rawValue: curve),
+                           animations: { _ in
+                            self.toolbar.frame = CGRect(x:0,y:self.view.bounds.height-frame.height-h,width:self.view.bounds.width,height:h)
+                            self.scrollView.frame = CGRect(x:0,y:self.scrollView.frame.origin.y,width:self.view.bounds.width,height:self.view.bounds.height-frame.height-h-self.scrollView.frame.origin.y)
+                            //self.toolbar.frame = CGRect(x:0,y:self.scheight-45-frame.height,width:self.view.bounds.width,height:45)
+                }, completion: nil)
             
-            if keyBoardNeedLayout {
-                UIView.animate(withDuration: duration, delay: 0.0,
-                                           options: UIViewAnimationOptions(rawValue: curve),
-                                           animations: { _ in
-                                            self.view.frame = CGRect(x:0,y:-deltaY,width:self.view.bounds.width,height:self.view.bounds.height)
-                                            self.keyBoardNeedLayout = false
-                                            self.view.layoutIfNeeded()
-                    }, completion: nil)
-            }
             
             
         }
@@ -250,46 +440,38 @@ class newsdetailViewController: UIViewController {
     
     //键盘隐藏响应
     func keyboardWillHide(notification: NSNotification) {
-        print("hide")
+        print("kbd:hide")
         if let userInfo = notification.userInfo,
-            let value = userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue,
+            
             let duration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? Double,
             let curve = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? UInt {
-            
-            let frame = value.cgRectValue
-            let intersection = frame.intersection(self.view.frame)
-            
-            let deltaY = intersection.height
-            
+            let h = self.toolbar.frame.height
             UIView.animate(withDuration: duration, delay: 0.0,
-                                       options: UIViewAnimationOptions(rawValue: curve),
-                                       animations: { _ in
-                                        self.view.frame = CGRect(x:0,y:deltaY,width:self.view.bounds.width,height:self.view.bounds.height)
-                                        self.keyBoardNeedLayout = true
-                                        self.view.layoutIfNeeded()
+                           options: UIViewAnimationOptions(rawValue: curve),
+                           animations: { _ in
+                            self.toolbar.frame = CGRect(x:0,y:self.view.bounds.height-h,width:self.view.bounds.width,height:h)
+                            
+                            self.scrollView.frame = CGRect(x:0,y:self.scrollView.frame.origin.y,width:self.view.bounds.width,height:self.view.bounds.height-h-self.scrollView.frame.origin.y)
+                           
                 }, completion: nil)
             
         }
     }
-    
-    
-    
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

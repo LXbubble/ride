@@ -12,9 +12,10 @@ class ImagePreviewCell: UICollectionViewCell {
     
     //滚动视图
     var scrollView:UIScrollView!
-    
+    var navi : UINavigationController!
     //用于显示图片的imageView
     var imageView:UIImageView!
+    var view1 : ImagePreviewVC?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -44,10 +45,14 @@ class ImagePreviewCell: UICollectionViewCell {
                                              action:#selector(tapDoubleDid(_:)))
         tapDouble.numberOfTapsRequired = 2
         tapDouble.numberOfTouchesRequired = 1
+        //长按监听
+        let longPress = UILongPressGestureRecognizer(target:self,
+                                                     action:#selector(longPressDid(_:)))
         //声明点击事件需要双击事件检测失败后才会执行
         tapSingle.require(toFail: tapDouble)
         self.imageView.addGestureRecognizer(tapSingle)
         self.imageView.addGestureRecognizer(tapDouble)
+        self.imageView.addGestureRecognizer(longPress)
     }
     
     //重置单元格内元素尺寸
@@ -75,10 +80,11 @@ class ImagePreviewCell: UICollectionViewCell {
     
     //图片单击事件响应
     func tapSingleDid(_ ges:UITapGestureRecognizer){
-        //显示或隐藏导航栏
-        if let nav = self.responderViewController()?.navigationController{
-            nav.setNavigationBarHidden(!nav.isNavigationBarHidden, animated: true)
-        }
+//        //显示或隐藏导航栏
+//        if let nav = self.responderViewController()?.navigationController{
+//            nav.setNavigationBarHidden(!nav.isNavigationBarHidden, animated: true)
+//        }
+        self.navi?.popViewController(animated: true)
     }
     
     //图片双击事件响应
@@ -105,7 +111,24 @@ class ImagePreviewCell: UICollectionViewCell {
             }
         })
     }
-    
+    func longPressDid(_ sender: UILongPressGestureRecognizer){
+        if sender.state == .began {
+            print("长按响应开始")
+            let alertController = UIAlertController(title: "保存图片到相册", message: nil,
+                                                    preferredStyle: .actionSheet)
+            let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+            let archiveAction = UIAlertAction(title: "保存", style: .default, handler:{
+                action in
+                UIImageWriteToSavedPhotosAlbum(self.imageView.image!, nil, nil, nil)
+            })
+            alertController.addAction(cancelAction)
+            alertController.addAction(archiveAction)
+            self.view1?.present(alertController, animated: true, completion: nil)
+
+        } else {
+            print("长按响应结束")
+        }
+    }
     //查找所在的ViewController
     func responderViewController() -> UIViewController? {
         for view in sequence(first: self.superview, next: { $0?.superview }) {
