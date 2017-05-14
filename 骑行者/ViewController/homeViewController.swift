@@ -59,14 +59,16 @@ class homeViewController: FYViewController {
             self?.popMenu.dismiss()
             if !readtoken(){
                 let alertController  = UIAlertController(title: "系统提示", message: "请先登录", preferredStyle: .alert)
-                let cancelAction = UIAlertAction(title: "确定", style: .cancel, handler:{
-                action in
+                let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+                let okAction = UIAlertAction(title: "确定", style: .default, handler:{
+                    action in
                     let sb = UIStoryboard(name: "Main", bundle: nil)
                     let vc = sb.instantiateViewController(withIdentifier: "loadview") as! LoadViewController
                     vc.hidesBottomBarWhenPushed = true
                     self?.navigationController?.pushViewController(vc, animated:true)
                 })
                 alertController.addAction(cancelAction)
+                alertController.addAction(okAction)
                 self?.present(alertController, animated: true, completion: nil)
                 
             }

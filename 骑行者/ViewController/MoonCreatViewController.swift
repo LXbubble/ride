@@ -23,7 +23,8 @@ class MoonCreatViewController: UIViewController,PhotoPickerControllerDelegate,UI
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        //键盘
+        self.hideKeyboardWhenTappedAround()
         self.view.addSubview(self.containerView)
         self.checkNeedAddButton()
         self.renderView()

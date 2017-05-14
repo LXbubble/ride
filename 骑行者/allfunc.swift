@@ -57,6 +57,7 @@ public func readtoken()->Bool{
         return true
     }
 }
+
 public func decodetoken(){
     let token = UserDefaults.standard.string(forKey: "token")
     do{

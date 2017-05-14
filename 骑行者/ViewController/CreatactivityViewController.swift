@@ -25,6 +25,11 @@ class CreatactivityViewController: UIViewController,UITextViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        //键盘
+        self.hideKeyboardWhenTappedAround()
+        
         self.nickname.text = (UserDefaults.standard.string(forKey: "user_nickname"))!
           self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "完成", style: .plain, target: self, action: #selector(self.creat))
         self.hideKeyboardWhenTappedAround()

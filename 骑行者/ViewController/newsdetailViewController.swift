@@ -45,6 +45,9 @@ class newsdetailViewController: UIViewController,UITableViewDelegate,UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.upicture.isUserInteractionEnabled = true
+         let tapGR2 = UITapGestureRecognizer(target: self, action: #selector(self.showuserinfo))
+        self.upicture.addGestureRecognizer(tapGR2)
         
         self.backimage?.isUserInteractionEnabled = true
         /////添加tapGuestureRecognizer手势
@@ -88,6 +91,8 @@ class newsdetailViewController: UIViewController,UITableViewDelegate,UITableView
     override func viewWillLayoutSubviews() {
         
         super.viewWillLayoutSubviews()
+        self.detail.sizeToFit()
+        self.nickname.sizeToFit()
         let h1 = self.detail.frame.origin.y + self.detail.frame.height
         self.comtableView?.frame = CGRect(x:0,y:h1+5,width: self.view.bounds.size.width, height:(comtableView?.contentSize.height)!)
         let h2 = ((self.comtableView?.frame.origin.y)! + (comtableView?.contentSize.height)!)
@@ -120,6 +125,16 @@ class newsdetailViewController: UIViewController,UITableViewDelegate,UITableView
         scrollView.addSubview(self.comtableView!)
     }
     
+    //头像点击       -----------------------------------------------
+    
+    
+    func showuserinfo(){
+        
+    }
+    
+    
+    
+    
     //图片点击
     func imagetap(){
         let previewVC = ImagePreviewVC( data:nil ,index:0)
@@ -129,7 +144,6 @@ class newsdetailViewController: UIViewController,UITableViewDelegate,UITableView
     
     //设置数据
     func setdata(){
-        self.reloaddata()
         self.upicture.getbyid(id: (data?["pid"].int)!)
         self.nickname.text = data!["nickname"].string
         self.backimage.getbyid(id: (data?["pictures_id"].int)!)
@@ -384,6 +398,8 @@ class newsdetailViewController: UIViewController,UITableViewDelegate,UITableView
         }
         
     }
+    
+    
     //删除评论
     func deletecom(tag: Int) {
         let alert = UIAlertController(title: "系统提示", message:"确定删除吗", preferredStyle: .alert)

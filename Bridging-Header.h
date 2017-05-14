@@ -33,10 +33,13 @@
 
 //高德地图
 #import <AMapFoundationKit/AMapFoundationKit.h>
-
+//#import "model/MANaviRoute.h"
 #import <AMapLocationKit/AMapLocationKit.h>
 //#import "APIKey.h"
 #import <MAMapKit/MAMapKit.h>
 #import <AMapSearchKit/AMapSearchKit.h>
 #import <AMapNaviKit/AMapNaviKit.h>
+#import "SWRevealViewController/SWRevealViewController.h"
 #endif /* Bridging_Header_h */
+
+

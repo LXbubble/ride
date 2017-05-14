@@ -63,6 +63,7 @@ class adressMapViewController: UIViewController,MAMapViewDelegate,AMapSearchDele
         vcdelegate?.image = self.mapView.takeSnapshot(in:CGRect(x: 0, y: 100, width:UIScreen.main.bounds.width , height:UIScreen.main.bounds.width/4 ))
         vcdelegate?.location = annotation.coordinate
         self.navigationController?.popViewController(animated: true)
+        
     }
     
     func initMapView() {

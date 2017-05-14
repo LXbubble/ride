@@ -15,6 +15,7 @@ PODS:
   - JSONWebToken (2.0.2):
     - CryptoSwift (~> 0.6.1)
   - SwiftyJSON (3.1.4)
+  - SWRevealViewController (2.3.0)
 
 DEPENDENCIES:
   - Alamofire (~> 4.4)
@@ -25,6 +26,7 @@ DEPENDENCIES:
   - Font-Awesome-Swift (~> 1.6.1)
   - JSONWebToken
   - SwiftyJSON
+  - SWRevealViewController
 
 SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
@@ -37,7 +39,8 @@ SPEC CHECKSUMS:
   Font-Awesome-Swift: 70ab020f6749d7048bb49807c3e78b702d78afca
   JSONWebToken: ca86f02eeb3d1f58ba5197ec2cd53c7de915ecc1
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
+  SWRevealViewController: 6d3fd97f70112fd7cef9de14df4260eacce4c63a
 
-PODFILE CHECKSUM: 0c412475cfef8d2b01c9a6096269e16288074bd9
+PODFILE CHECKSUM: 34296e728e545a2e6ff408b51a30a18e4c013a18
 
 COCOAPODS: 1.2.0

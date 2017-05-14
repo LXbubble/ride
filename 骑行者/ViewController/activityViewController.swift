@@ -161,7 +161,7 @@ class activityViewController: UIViewController,UITableViewDelegate, UITableViewD
         cell.time.text = arry?["time"].string!
         cell.bkimage.getbyid(id: (arry?["pictures_id"].int)!)
         cell.adress.text = arry?["adress"].string!
-        cell.joincount.text = "已有\((arry?["joincount"].int)!)人参加"
+        cell.joincount.text = "已有\((arry?["jioncount"].int)!)人参加"
         cell.selectedBackgroundView?.backgroundColor = .white
         cell.frame = tableView.bounds
         print("bounds \(tableView.bounds)")
@@ -178,14 +178,14 @@ class activityViewController: UIViewController,UITableViewDelegate, UITableViewD
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("点击了\(indexPath.row)")
-//        
-//        let sb = UIStoryboard(name: "Main", bundle: nil)
-//        let vc:newsdetailViewController = sb.instantiateViewController(withIdentifier: "newsdetail") as! newsdetailViewController
-//        vc.hidesBottomBarWhenPushed = true
-//        vc.data = self.data?[indexPath.row]
-//        vc.infoid = (self.data?[indexPath.row]["id"].int)!
-//        print("8888:\(self.data?[indexPath.row]["id"].int)")
-//        self.navigationController?.pushViewController(vc, animated:true)
+        
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        let vc = sb.instantiateViewController(withIdentifier: "activitydetail") as! activityDetailViewController
+        vc.hidesBottomBarWhenPushed = true
+        vc.data = self.data?[indexPath.row]
+        vc.id = (self.data?[indexPath.row]["id"].int)!
+        print("8888:\(self.data?[indexPath.row]["id"].int)")
+        self.navigationController?.pushViewController(vc, animated:true)
         
         
     }

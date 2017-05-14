@@ -15,14 +15,15 @@ func Apost (url:String,body:Parameters,next: @escaping (JSON)->())
 {
     let URL = urladd(url: url)
     
-     Alamofire.request(URL,method: .post, parameters:body,encoding:JSONEncoding.default).responseJSON
-            {
-                response in
-                debugPrint(response)
-                next(JSON(data: response.data!))
-            }
+    Alamofire.request(URL,method: .post, parameters:body,encoding:JSONEncoding.default).responseJSON
+        {
+            response in
+            debugPrint(response)
+            next(JSON(data: response.data!))
+    }
     
 }
+//get
 func Aget (url:String,next: @escaping (JSON)->())
 {
     let URL = urladd(url: url)
@@ -41,7 +42,7 @@ func Aget (url:String,next: @escaping (JSON)->())
 func urladd(url:String)->String{
     //let urltitle:String = "http://localhost:8888/"
     
-    let urltitle:String = "http://60.176.44.121:8888/"
+    let urltitle:String = "http://218.72.84.11:8888/"
     let URL = urltitle + url
     return URL
 }
@@ -51,7 +52,7 @@ func photoget (id:Int,next: @escaping (Data)->())
 {   let url = "picture/pictures/readpictures/id/\(id)"
     let URL = urladd(url: url)
     Alamofire.request(URL,method: .get).response
-        {   
+        {
             response in
             debugPrint(response)
             next(response.data!)
@@ -95,3 +96,24 @@ func photopost (data:Data,next: @escaping (JSON)->())
             next(JSON(data: response.data!))
     }
 }
+
+
+func intdate(_ dateint:Int)->String{
+    
+    let formatter  = DateComponentsFormatter()
+    formatter.allowedUnits = [.hour,.minute,.second]
+    formatter.unitsStyle = .positional
+    formatter.zeroFormattingBehavior = .pad
+    let outputString = formatter.string(from: TimeInterval(dateint))
+    return outputString!
+}
+
+
+
+
+
+
+
+
+
+

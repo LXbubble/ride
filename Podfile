@@ -11,5 +11,5 @@ target ‘骑行者’ do
     pod 'AMapSearch' 
     pod 'AMapLocation'
     pod 'AMapNavi'
-
+    pod 'SWRevealViewController'
 end

@@ -177,7 +177,7 @@ class newsViewController: UIViewController,UITableViewDelegate, UITableViewDataS
         print("点击了\(indexPath.row)")
         
         let sb = UIStoryboard(name: "Main", bundle: nil)
-        let vc:newsdetailViewController = sb.instantiateViewController(withIdentifier: "newsdetail") as! newsdetailViewController
+        let vc = sb.instantiateViewController(withIdentifier: "newsdetail") as! newsdetailViewController
         vc.hidesBottomBarWhenPushed = true
         vc.data = self.data?[indexPath.row]
         vc.infoid = (self.data?[indexPath.row]["id"].int)!

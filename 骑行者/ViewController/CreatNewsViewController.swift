@@ -22,6 +22,9 @@ class CreatNewsViewController: UIViewController, UITextViewDelegate,UIImagePicke
     var reloaddelegate:newsViewController!
     
     override func viewDidLoad() {
+        
+        //键盘
+        self.hideKeyboardWhenTappedAround()
         super.viewDidLoad()
         let keybutton = UIButton(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height))
         keybutton.addTarget(self, action: #selector(self.hidekeyboard), for: .touchUpInside)
