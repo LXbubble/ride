@@ -7,9 +7,11 @@
 //
 
 import UIKit
-
-class homeViewController: FYViewController {
+import SWRevealViewController
+class homeViewController: FYViewController,SWRevealViewControllerDelegate {
     
+    @IBOutlet weak var left: UIBarButtonItem!
+ 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.tabBarItem.setFAIcon(icon: .FAHome)
@@ -24,7 +26,16 @@ class homeViewController: FYViewController {
     @IBOutlet weak var write: UIBarButtonItem!
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        
+        
+        
+        self.revealViewController().delegate = self
+        self.navigationItem.leftBarButtonItem?.target = self.revealViewController()
+        self.navigationItem.leftBarButtonItem?.image = UIImage(icon: .FABars, size: CGSize(width: 30, height: 30),textColor:.black)
+        self.navigationItem.leftBarButtonItem?.action = #selector(SWRevealViewController.revealToggle(_:))
+        self.revealViewController().tapGestureRecognizer()
+        self.revealViewController().panGestureRecognizer()
+
         self.navigationItem.rightBarButtonItem = UIBarButtonItem( barButtonSystemItem:.add, target: self, action: #selector(self.showMenu))
         
         
@@ -45,12 +56,17 @@ class homeViewController: FYViewController {
         self.addChildViewController(moon)
         self.addChildViewController(activity)
     }
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        //self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer());
 
+    }
     func showMenu() {
         //frame 为整个popview相对整个屏幕的位置  箭头距离右边位置，默认15
         //popMenu =  SwiftPopMenu(frame: CGRect(x: KSCREEN_WIDTH - 155, y: 51, width: 150, height: 112))
         
-        popMenu = SwiftPopMenu(frame:  CGRect(x: KSCREEN_WIDTH - 135, y: 51, width: 100, height: 112), arrowMargin: 12)
+        popMenu = SwiftPopMenu(frame:  CGRect(x: KSCREEN_WIDTH - 125, y: 51, width: 100, height: 112), arrowMargin: 12)
         popMenu.popData = [(icon:"edit",title:"心情"),
                             (icon:"wz",title:"文章"),
                             (icon:"bicycle",title:"活动")]
@@ -94,7 +110,9 @@ class homeViewController: FYViewController {
         popMenu.show()
     }
 
-    
+    func revealController(_ revealController: SWRevealViewController!, willMoveTo position: FrontViewPosition) {
+        self.view.isUserInteractionEnabled = position == .left
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

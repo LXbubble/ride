@@ -8,7 +8,7 @@
 
 import UIKit
 import SwiftyJSON
-
+import SWRevealViewController
 
 
 class equipViewController: UIViewController ,UITableViewDelegate,UITableViewDataSource{
@@ -30,7 +30,7 @@ class equipViewController: UIViewController ,UITableViewDelegate,UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+       
                //添加刷新
         refreshControl.addTarget(self, action: #selector(reloaddata),
                                  for: .valueChanged)
@@ -126,8 +126,8 @@ class equipViewController: UIViewController ,UITableViewDelegate,UITableViewData
         self.navigationController?.pushViewController(vc, animated: true)
         
     }
-  
     
+       
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -178,14 +178,16 @@ class activityDetailViewController : UIViewController , AMapSearchDelegate , MAM
         mapView = MAMapView(frame: self.adressview.bounds)
         mapView.delegate = self
         mapView.zoomLevel = 15
-        self.adressview.addSubview(mapView!)
-       
+        mapView.centerCoordinate = self.coordinate!
         let annotation = MAPointAnnotation()
         annotation.coordinate = coordinate!
         annotation.title = self.adress.text!
         annotation.subtitle = nil
         mapView!.addAnnotation(annotation)
-        mapView.setCenter(self.coordinate!, animated: true)
+        self.adressview.addSubview(mapView!)
+       
+        
+       // mapView.setCenter(self.coordinate!, animated: true)
         
     }
     

@@ -37,6 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
             let guideViewController = GuideViewController()
             self.window!.rootViewController = guideViewController
             print("guideview launched!")
+            UserDefaults.standard.set(false, forKey: "islight")
         }
         
         /**

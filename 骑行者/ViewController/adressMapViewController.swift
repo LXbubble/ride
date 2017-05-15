@@ -69,6 +69,7 @@ class adressMapViewController: UIViewController,MAMapViewDelegate,AMapSearchDele
     func initMapView() {
         
         mapView = MAMapView(frame: self.view.bounds)
+        
         mapView.delegate = self
         self.view.addSubview(mapView!)
         self.view.sendSubview(toBack: mapView!)

@@ -353,12 +353,13 @@ class newsdetailViewController: UIViewController,UITableViewDelegate,UITableView
         cell.ceng.text = "\(index)楼"
         cell.delbutton.tag = indexPath.row
         cell.deletecomDelegate = self
-
-        if(UserDefaults.standard.string(forKey:"user_id") == "\(comdata?[indexPath.row]["uid"].int)!)")||(UserDefaults.standard.string(forKey: "user_role")! == "manager"){
+        if readtoken(){
+        if(UserDefaults.standard.string(forKey:"user_id") == "\(comdata?[indexPath.row]["uid"].int)!)")||(UserDefaults.standard.string(forKey: "user_role") == "manager"){
             
             print(comdata?[indexPath.row])
             print("userid:\(UserDefaults.standard.string(forKey:"user_id"))","user_id:\(comdata?[indexPath.row]["uid"].int)",UserDefaults.standard.string(forKey: "user_role"))
-            cell.delbutton.isHidden = false        }
+            cell.delbutton.isHidden = false }
+        }
         cell.frame = (comtableView?.bounds)!
         cell.layoutIfNeeded()
         return cell
