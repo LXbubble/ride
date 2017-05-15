@@ -12,6 +12,7 @@ class TabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.isToolbarHidden = true
         //self.viewControllers?[0].tabBarItem.setFAIcon(icon: .FABicycle, size: CGSize(width:30,height:30))
          //self.viewControllers?[1].tabBarItem.setFAIcon(icon: .FABicycle, size: CGSize(width:30,height:30))
                 // Do any additional setup after loading the view.

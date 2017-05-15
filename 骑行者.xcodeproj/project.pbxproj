@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		18005BF41EC415E200979B8C /* comTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18005BF21EC415E200979B8C /* comTableViewCell.swift */; };
 		18005BF51EC415E200979B8C /* comTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18005BF31EC415E200979B8C /* comTableViewCell.xib */; };
+		1801AE2E1EC9729A006F4492 /* leftTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1801AE2D1EC9729A006F4492 /* leftTableViewController.swift */; };
+		1801AE301EC972B9006F4492 /* InfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1801AE2F1EC972B9006F4492 /* InfoTableViewController.swift */; };
+		1801AE321EC9743F006F4492 /* userViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1801AE311EC9743F006F4492 /* userViewController.swift */; };
 		181123381EC6D05100F79627 /* adressMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181123371EC6D05100F79627 /* adressMapViewController.swift */; };
 		181BE09E1E93AFCF00CD1CD5 /* SliderGalleryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181BE09C1E93AFCF00CD1CD5 /* SliderGalleryController.swift */; };
 		1821FC3D1EBD62300088825D /* AlbumToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1821FC2A1EBD62300088825D /* AlbumToolbarView.swift */; };
@@ -146,6 +149,9 @@
 /* Begin PBXFileReference section */
 		18005BF21EC415E200979B8C /* comTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = comTableViewCell.swift; sourceTree = "<group>"; };
 		18005BF31EC415E200979B8C /* comTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = comTableViewCell.xib; sourceTree = "<group>"; };
+		1801AE2D1EC9729A006F4492 /* leftTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = leftTableViewController.swift; sourceTree = "<group>"; };
+		1801AE2F1EC972B9006F4492 /* InfoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoTableViewController.swift; sourceTree = "<group>"; };
+		1801AE311EC9743F006F4492 /* userViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = userViewController.swift; sourceTree = "<group>"; };
 		181123371EC6D05100F79627 /* adressMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = adressMapViewController.swift; sourceTree = "<group>"; };
 		181BE09C1E93AFCF00CD1CD5 /* SliderGalleryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SliderGalleryController.swift; path = ../SliderGalleryController.swift; sourceTree = "<group>"; };
 		1821FC2A1EBD62300088825D /* AlbumToolbarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumToolbarView.swift; sourceTree = "<group>"; };
@@ -623,6 +629,9 @@
 				189C18A61EC76D16005FCAB1 /* creatEquipViewController.swift */,
 				189C18A41EC75E77005FCAB1 /* equipViewController.swift */,
 				189C18A81EC782B2005FCAB1 /* webViewController.swift */,
+				1801AE2D1EC9729A006F4492 /* leftTableViewController.swift */,
+				1801AE2F1EC972B9006F4492 /* InfoTableViewController.swift */,
+				1801AE311EC9743F006F4492 /* userViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -888,7 +897,9 @@
 				18C8486C1EC31522003AC40D /* MoonDetailViewController.swift in Sources */,
 				1821FC4E1EBD62300088825D /* UICollectionView+Extension.swift in Sources */,
 				1821FC421EBD62300088825D /* photoCollectionViewCell.swift in Sources */,
+				1801AE321EC9743F006F4492 /* userViewController.swift in Sources */,
 				185B14A51E8CC94600C4DDB1 /* LoadViewController.swift in Sources */,
+				1801AE2E1EC9729A006F4492 /* leftTableViewController.swift in Sources */,
 				18A356971E926A9A00662F7C /* TabBarController.swift in Sources */,
 				1821FC491EBD62300088825D /* PhotoPickerController.swift in Sources */,
 				1821FC451EBD62300088825D /* PhotoFetchOptions.swift in Sources */,
@@ -896,6 +907,7 @@
 				1821FC3E1EBD62300088825D /* ImageModel.swift in Sources */,
 				189C18A91EC782B2005FCAB1 /* webViewController.swift in Sources */,
 				1821FC531EBD62990088825D /* PhotoImageModel.swift in Sources */,
+				1801AE301EC972B9006F4492 /* InfoTableViewController.swift in Sources */,
 				18F91E1C1EA33553004AE4FE /* homeViewController.swift in Sources */,
 				1821FC4A1EBD62300088825D /* PhotoPreviewBottomBarView.swift in Sources */,
 				18C7A7AC1EC1EF0B00C702D0 /* ImagePreviewCell.swift in Sources */,

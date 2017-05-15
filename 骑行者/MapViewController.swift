@@ -11,7 +11,7 @@ import UIKit
 class MapViewController: UIViewController,MAMapViewDelegate,AMapSearchDelegate,AMapLocationManagerDelegate{
    
     @IBOutlet weak var paishe: UIButton!
-
+   
     @IBOutlet weak var begin: UIButton!
     @IBOutlet weak var infoview: UIView!
     var userlocation:CLLocationCoordinate2D?
@@ -21,6 +21,7 @@ class MapViewController: UIViewController,MAMapViewDelegate,AMapSearchDelegate,A
     var locationManager = AMapLocationManager()
     override func viewDidLoad() {
         super.viewDidLoad()
+    self.delbtn.isHidden = true
         self.navigationController?.isNavigationBarHidden = true
         begin.layer.cornerRadius = begin.frame.size.width/2.0
         begin.layer.masksToBounds = true
@@ -84,7 +85,15 @@ class MapViewController: UIViewController,MAMapViewDelegate,AMapSearchDelegate,A
     }
     
     @IBOutlet weak var relocation: UIButton!
+    @IBOutlet weak var delbtn: UIButton!
     
+    @IBAction func delline(_ sender: AnyObject) {
+        mapView.remove(self.polyline)
+        mapView.removeAnnotation(self.annotation)
+        self.delbtn.isHidden = true
+    }
+    
+
     @IBAction func reloaction(_ sender: AnyObject) {
         getlocation()
     }
@@ -169,7 +178,8 @@ class MapViewController: UIViewController,MAMapViewDelegate,AMapSearchDelegate,A
     @IBOutlet weak var distence: UILabel!
     
     //开始骑行或结束骑行
-
+    var polyline:MAPolyline?
+    var polyline1:MAPolyline?
     var inttime:Int = 0
     var isbegin:Bool = false
     var distencecount:Double = 0.0
@@ -330,11 +340,10 @@ class MapViewController: UIViewController,MAMapViewDelegate,AMapSearchDelegate,A
         
         // 每次获取到新的定位点重新绘制路径
         // 移除掉除之前的overlay
-        let overlays = self.mapView.overlays
-        self.mapView.removeOverlays(overlays)
+        self.mapView.remove(polyline1)
         
-        let polyline = MAPolyline(coordinates: &self.coordinateArray, count: UInt(self.coordinateArray.count))
-        self.mapView.add(polyline)
+        self.polyline1 = MAPolyline(coordinates: &self.coordinateArray, count: UInt(self.coordinateArray.count))
+        self.mapView.add(polyline1)
         
         // 将最新的点定位到界面正中间显示
 //        let lastCoord = self.coordinateArray[self.coordinateArray.count - 1]
@@ -385,14 +394,13 @@ class MapViewController: UIViewController,MAMapViewDelegate,AMapSearchDelegate,A
                 coorarr +=  i.polyline.components(separatedBy: ";").map()
                     { x in
                         let co = x.components(separatedBy: ",")
-                        return CLLocationCoordinate2D(latitude: Double(co[0])!, longitude: Double(co[1])!)
+                        return CLLocationCoordinate2D(latitude: Double(co[1])!, longitude: Double(co[0])!)
                 }
             }
-            let overlays = self.mapView.overlays
-            self.mapView.removeOverlays(overlays)
-            let polyline = MAPolyline(coordinates: &coorarr, count: UInt(coorarr.count))
+            self.mapView.remove(self.polyline)
+            self.polyline = MAPolyline(coordinates: &coorarr, count: UInt(coorarr.count))
             self.mapView.add(polyline)
-
+            self.delbtn.isHidden = false
         }
     }
     
@@ -411,6 +419,7 @@ class MapViewController: UIViewController,MAMapViewDelegate,AMapSearchDelegate,A
                 annotationView = MAPinAnnotationView(annotation: annotation, reuseIdentifier: pointReuseIndetifier)
             }
             let dhbutton  = UIButton(type: .detailDisclosure)
+            dhbutton.setImage(UIImage(named:"导航"), for:.normal)
             dhbutton.addTarget(self, action: #selector(self.setline), for: .touchUpInside)
             annotationView!.canShowCallout = true
             annotationView!.animatesDrop = true
@@ -460,6 +469,7 @@ class MapViewController: UIViewController,MAMapViewDelegate,AMapSearchDelegate,A
             annotation.title = response.regeocode.formattedAddress
             annotation.subtitle = response.regeocode.addressComponent.province
             mapView!.addAnnotation(annotation)
+            self.delbtn.isHidden = false
         }
     }
     
